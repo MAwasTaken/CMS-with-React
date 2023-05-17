@@ -4,6 +4,11 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
 // styles
+import "./styles/reset.css";
+import "./styles/fonts.css";
+import "./styles/variables.css";
+import "./styles/defaults.css";
+import "./styles/helpers.css";
 
 // packages
 

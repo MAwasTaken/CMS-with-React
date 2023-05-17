@@ -7,11 +7,16 @@ import "./Index.css";
 // packages
 
 // components
+import Header from "../../Components/Header/Header";
 
 // index
 function index() {
-  // jsx
-	return <div>index</div>;
+	// jsx
+	return (
+		<div>
+			<Header />
+		</div>
+	);
 }
 
 // exports
