@@ -2,7 +2,7 @@
 import React from "react";
 
 // styles
-import "./index.css";
+import "./Index.css";
 
 // packages
 
@@ -10,6 +10,7 @@ import "./index.css";
 
 // index
 function index() {
+  // jsx
 	return <div>index</div>;
 }
 

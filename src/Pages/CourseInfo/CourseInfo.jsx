@@ -10,6 +10,7 @@ import "./CourseInfo.css";
 
 // course info
 function CourseInfo() {
+	// jsx
 	return <div>CourseInfo</div>;
 }
 
