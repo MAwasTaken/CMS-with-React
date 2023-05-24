@@ -8,14 +8,16 @@ import "./Index.css";
 
 // components
 import Header from "../../Components/Header/Header";
+import LastCourses from "../../Components/LastCourses/LastCourses";
 
 // index
 function index() {
 	// jsx
 	return (
-		<div>
+		<>
 			<Header />
-		</div>
+			<LastCourses />
+		</>
 	);
 }
 
