@@ -9,14 +9,16 @@ import "./Header.css";
 // components
 import Topbar from "../Topbar/Topbar";
 import Navbar from "../Navbar/Navbar";
+import Landing from "../Landing/Landing";
 
 // header
 function Header() {
 	// jsx
 	return (
-		<div className="header">
+		<div className='header'>
 			<Topbar />
 			<Navbar />
+			<Landing />
 		</div>
 	);
 }
