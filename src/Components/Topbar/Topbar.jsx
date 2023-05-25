@@ -8,7 +8,7 @@ import './Topbar.css'
 
 // components
 
-// topbar
+// top bar
 function Topbar() {
 	// jsx
 	return (

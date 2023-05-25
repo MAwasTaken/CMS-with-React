@@ -9,7 +9,7 @@ import Typewriter from "typewriter-effect";
 
 // components
 
-// header
+// landing
 function Landing() {
 	// jsx
 	return (

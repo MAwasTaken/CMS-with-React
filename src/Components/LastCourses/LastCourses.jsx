@@ -10,7 +10,7 @@ import "./LastCourses.css";
 import SectionHeader from "../SectionHeader/SectionHeader";
 import CourseBox from "../CourseBox/CourseBox";
 
-// header
+// last courses
 function LastCourses() {
 	// jsx
 	return (

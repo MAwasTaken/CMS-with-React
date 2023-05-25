@@ -8,7 +8,7 @@ import "./SectionHeader.css";
 
 // components
 
-// header
+// section header
 function SectionHeader({ title, description, btnTitle }) {
 	// jsx
 	return (
