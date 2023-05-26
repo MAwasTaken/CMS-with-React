@@ -11,6 +11,7 @@ import SectionHeader from "../SectionHeader/SectionHeader";
 
 // popular courses
 function PopularCourses() {
+  // jsx
 	return (
 			<div class='popular'>
 				<div class='container'>

@@ -11,6 +11,7 @@ import SectionHeader from "../SectionHeader/SectionHeader";
 
 // presell courses
 function PresellCourses() {
+  // jsx
 	return (
 			<div class='presell'>
 				<div class='container'>
