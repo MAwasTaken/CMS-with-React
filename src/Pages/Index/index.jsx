@@ -10,6 +10,9 @@ import "./Index.css";
 import Header from "../../Components/Header/Header";
 import LastCourses from "../../Components/LastCourses/LastCourses";
 import AboutUs from "../../Components/AboutUs/AboutUs";
+import PopularCourses from "../../Components/popularCourses/PopularCourses";
+import PresellCourses from "../../Components/PresellCourses/PresellCourses";
+import LastArticles from "../../Components/LastArticles/LastArticles";
 
 // index
 function index() {
@@ -19,6 +22,9 @@ function index() {
 			<Header />
 			<LastCourses />
 			<AboutUs />
+			<PopularCourses />
+			<PresellCourses />
+			<LastArticles />
 		</>
 	);
 }
