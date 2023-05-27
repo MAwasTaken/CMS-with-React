@@ -12,9 +12,9 @@ import "./FooterItem.css";
 function FooterItem({ title, children }) {
 	// jsx
 	return (
-		<div class='col-4'>
-			<div class='footer-widgets__item'>
-				<span class='footer-widgets__title'>{title}</span>
+		<div className='col-4'>
+			<div className='footer-widgets__item'>
+				<span className='footer-widgets__title'>{title}</span>
 				{children}
 			</div>
 		</div>
