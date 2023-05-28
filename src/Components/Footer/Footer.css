@@ -3,7 +3,7 @@
   border-radius: 1rem;
   padding: 4rem 3.5rem;
   position: relative;
-  margin-bottom: 5rem;
+  margin: 5rem 0;
 }
 
 .footer-widgets::before {
