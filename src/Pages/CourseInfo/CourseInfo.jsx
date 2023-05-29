@@ -12,6 +12,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb';
 import CourseDetailBox from '../../Components/CourseDetailBox/CourseDetailBox';
+import CommentTextarea from '../../Components/CommentsTextarea/CommentTextarea';
 
 // course info
 function CourseInfo() {
@@ -243,6 +244,7 @@ function CourseInfo() {
 								</p>
 							</div>
 							{/* finish teacher details */}
+							<CommentTextarea />
 						</div>
 						{/* finish right side section */}
 
@@ -292,7 +294,7 @@ function CourseInfo() {
 										<a
 											href='#'
 											style={{ color: 'blue', fontWeight: 'bold' }}>
-                        {" لینک "}
+											{' لینک '}
 										</a>
 										کلیک کنید
 									</span>
