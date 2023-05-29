@@ -5,6 +5,7 @@ import React from 'react';
 import './CourseInfo.css';
 
 // packages
+import Accordion from 'react-bootstrap/Accordion';
 
 // components
 import Topbar from '../../components/Topbar/Topbar';
@@ -210,6 +211,67 @@ function CourseInfo() {
 										دانلود همگانی پیوست‌ها
 									</a>
 								</div>
+								<Accordion
+									defaultActiveKey='0'
+									className='accordion'>
+									<Accordion.Item
+										className='accordion'
+										eventKey='0'>
+										<Accordion.Header>معرفی دوره</Accordion.Header>
+										<Accordion.Body className='introduction__accordion-body'>
+											<div class='introduction__accordion-right'>
+												<span class='introduction__accordion-count'>1</span>
+												<i class='fab fa-youtube introduction__accordion-icon'></i>
+												<a
+													href='#'
+													class='introduction__accordion-link'>
+													معرفی دوره + چرا یادگیری کتابخانه ها ضروری است؟
+												</a>
+											</div>
+											<div class='introduction__accordion-left'>
+												<span class='introduction__accordion-time'>18:34</span>
+											</div>
+										</Accordion.Body>
+									</Accordion.Item>
+									<Accordion.Item
+										className='accordion'
+										eventKey='1'>
+										<Accordion.Header>اصطلاحات مقدماتی مربوط به بک اند</Accordion.Header>
+										<Accordion.Body className='introduction__accordion-body'>
+											<div class='introduction__accordion-right'>
+												<span class='introduction__accordion-count'>1</span>
+												<i class='fab fa-youtube introduction__accordion-icon'></i>
+												<a
+													href='#'
+													class='introduction__accordion-link'>
+													جلسه دوم
+												</a>
+											</div>
+											<div class='introduction__accordion-left'>
+												<span class='introduction__accordion-time'>18:34</span>
+											</div>
+										</Accordion.Body>
+									</Accordion.Item>
+									<Accordion.Item
+										className='accordion'
+										eventKey='2'>
+										<Accordion.Header>اصطلاحات مقدماتی مربوط به بک اند</Accordion.Header>
+										<Accordion.Body className='introduction__accordion-body'>
+											<div class='introduction__accordion-right'>
+												<span class='introduction__accordion-count'>1</span>
+												<i class='fab fa-youtube introduction__accordion-icon'></i>
+												<a
+													href='#'
+													class='introduction__accordion-link'>
+													جلسه سوم
+												</a>
+											</div>
+											<div class='introduction__accordion-left'>
+												<span class='introduction__accordion-time'>18:34</span>
+											</div>
+										</Accordion.Body>
+									</Accordion.Item>
+								</Accordion>
 							</div>
 							{/* finish introduction */}
 
