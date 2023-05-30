@@ -13,9 +13,9 @@ import SectionHeader from "../SectionHeader/SectionHeader";
 function PopularCourses() {
   // jsx
 	return (
-			<div class='popular'>
-				<div class='container'>
-					<div class='popular__header'>
+			<div className='popular'>
+				<div className='container'>
+					<div className='popular__header'>
 						<SectionHeader title='محبوب ترین دوره ها' description='' btnTitle='' />
 					</div>
 				</div>

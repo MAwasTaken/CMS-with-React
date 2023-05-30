@@ -13,9 +13,9 @@ import SectionHeader from "../SectionHeader/SectionHeader";
 function PresellCourses() {
   // jsx
 	return (
-			<div class='presell'>
-				<div class='container'>
-					<div class='presell'>
+			<div className='presell'>
+				<div className='container'>
+					<div className='presell'>
 						<SectionHeader title='دوره های پیش فروش' description='' btnTitle='' />
 					</div>
 				</div>

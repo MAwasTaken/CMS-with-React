@@ -1,14 +1,14 @@
 // react
-import React from "react";
+import React from 'react';
 
 // styles
-import "./LastCourses.css";
+import './LastCourses.css';
 
 // packages
 
 // components
-import SectionHeader from "../SectionHeader/SectionHeader";
-import CourseBox from "../CourseBox/CourseBox";
+import SectionHeader from '../SectionHeader/SectionHeader';
+import CourseBox from '../CourseBox/CourseBox';
 
 // last courses
 function LastCourses() {
@@ -16,7 +16,12 @@ function LastCourses() {
 	return (
 		<div className='courses'>
 			<div className='container'>
-				<SectionHeader title='جدیدترین دوره ها' description='سکوی پرتاپ شما به سمت موفقیت' btnTitle='همه دوره ها' />
+				<SectionHeader
+					title='جدیدترین دوره ها'
+					description='سکوی پرتاب شما به سمت موفقیت'
+					btnTitle='تمامی دوره ها'
+          btnHref='courses'
+				/>
 				<div className='course-content'>
 					<div className='container'>
 						<div className='row'>
