@@ -1,39 +1,75 @@
 // react
-import React from "react";
+import React, { useState } from 'react';
 
 // styles
-import "./CourseBox.css";
+import './CourseBox.css';
 
 // packages
 
 // components
+import CircleSpinner from '../CircleSpinner/CircleSpinner';
 
 // course box
 function CourseBox() {
+	// image loader
+	const [isImgShow, setIsImgShow] = useState(false);
+
+	const onImageLoaded = () => setIsImgShow(true);
+
 	// jsx
 	return (
 		<div className='col-4'>
 			<div className='course-box'>
 				<a href='#'>
-					<img src='/images/courses/fareelancer.png' alt='Course img' className='course-box__img' />
+          {!isImgShow && <CircleSpinner />}
+					<img
+						src='/images/courses/fareelancer.png'
+						alt='Course img'
+						className='course-box__img'
+						onLoad={onImageLoaded}
+					/>
 				</a>
 				<div className='course-box__main'>
-					<a href='#' className='course-box__title'>
+					<a
+						href='#'
+						className='course-box__title'>
 						دوره پروژه محور متخصص جنگو
 					</a>
 					<div className='course-box__rating-teacher'>
 						<div className='course-box__teacher'>
 							<i className='fas fa-chalkboard-teacher course-box__teacher-icon'></i>
-							<a href='#' className='course-box__teacher-link'>
+							<a
+								href='#'
+								className='course-box__teacher-link'>
 								رضا دولتی
 							</a>
 						</div>
 						<div className='course-box__rating'>
-							<img src='/images/svgs/star.svg' alt='rating' className='course-box__star' />
-							<img src='/images/svgs/star_fill.svg' alt='rating' className='course-box__star' />
-							<img src='/images/svgs/star_fill.svg' alt='rating' className='course-box__star' />
-							<img src='/images/svgs/star_fill.svg' alt='rating' className='course-box__star' />
-							<img src='/images/svgs/star_fill.svg' alt='rating' className='course-box__star' />
+							<img
+								src='/images/svgs/star.svg'
+								alt='rating'
+								className='course-box__star'
+							/>
+							<img
+								src='/images/svgs/star_fill.svg'
+								alt='rating'
+								className='course-box__star'
+							/>
+							<img
+								src='/images/svgs/star_fill.svg'
+								alt='rating'
+								className='course-box__star'
+							/>
+							<img
+								src='/images/svgs/star_fill.svg'
+								alt='rating'
+								className='course-box__star'
+							/>
+							<img
+								src='/images/svgs/star_fill.svg'
+								alt='rating'
+								className='course-box__star'
+							/>
 						</div>
 					</div>
 					<div className='course-box__status'>
@@ -45,7 +81,9 @@ function CourseBox() {
 					</div>
 				</div>
 				<div className='course-box__footer'>
-					<a href='#' className='course-box__footer-link'>
+					<a
+						href='#'
+						className='course-box__footer-link'>
 						مشاهده اطلاعات
 						<i className='fas fa-arrow-left course-box__footer-icon'></i>
 					</a>
