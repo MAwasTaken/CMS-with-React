@@ -11,6 +11,7 @@ import './Register.css';
 import Topbar from '../../Components/Topbar/Topbar';
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
+import Input from '../../Components/Form/Input';
 
 // register
 function Register() {
@@ -34,27 +35,30 @@ function Register() {
 						action='#'
 						className='login-form'>
 						<div className='login-form__username'>
-							<input
-								className='login-form__username-input'
-								type='text'
-								placeholder='نام کاربری'
-							/>
+              <Input
+                element="input"
+                className="login-form__username-input"  
+                type="text"
+                placeholder="نام کاربری"
+              />
 							<i className='login-form__username-icon fa fa-user'></i>
 						</div>
 						<div className='login-form__password'>
-							<input
-								className='login-form__password-input'
-								type='text'
-								placeholder='آدرس ایمیل'
-							/>
+              <Input
+                element="input"
+                className="login-form__password-input"
+                type="text"
+                placeholder="آدرس ایمیل"
+              />
 							<i className='login-form__password-icon fa fa-envelope'></i>
 						</div>
 						<div className='login-form__password'>
-							<input
-								className='login-form__password-input'
-								type='text'
-								placeholder='رمز عبور'
-							/>
+              <Input
+                element="input"
+                className="login-form__password-input"
+                type="text"
+                placeholder="رمز عبور"
+              />
 							<i className='login-form__password-icon fa fa-lock-open'></i>
 						</div>
 						<button
@@ -71,7 +75,7 @@ function Register() {
 								لطفا از مرورگر های مطمئن و بروز مانند گوگل کروم و فایرفاکس استفاده کنید.
 							</li>
 							<li className='login__des-item'>
-								ما هرگز اطلاعات محرمانه شمارا از طریق ایمیل درخواست نمیکنیم.
+								ما هرگز اطلاعات محرمانه شما را از طریق ایمیل درخواست نمی کنیم.
 							</li>
 							<li className='login__des-item'>
 								لطفا کلمه عبور خود را در فواصل زمانی کوتاه تغییر دهید.

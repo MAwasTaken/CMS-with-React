@@ -11,6 +11,7 @@ import './Login.css';
 import Topbar from '../../Components/Topbar/Topbar';
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
+import Input from '../../Components/Form/Input';
 
 // login
 function Login() {
@@ -21,7 +22,7 @@ function Login() {
 			<section className='login-register'>
 				<div className='login'>
 					<span className='login__title'>ورود به حساب کاربری</span>
-					<span className='login__subtitle'>خوشحالیم دوباره میبینیمت دوست عزیز :)</span>
+					<span className='login__subtitle'>خوشحالیم دوباره می بینیمت دوست عزیز :)</span>
 					<div className='login__new-member'>
 						<span className='login__new-member-text'>کاربر جدید هستید؟</span>
 						<Link
@@ -34,7 +35,8 @@ function Login() {
 						action='#'
 						className='login-form'>
 						<div className='login-form__username'>
-							<input
+							<Input
+                element="input"
 								className='login-form__username-input'
 								type='text'
 								placeholder='نام کاربری یا آدرس ایمیل'
@@ -42,11 +44,11 @@ function Login() {
 							<i className='login-form__username-icon fa fa-user'></i>
 						</div>
 						<div className='login-form__password'>
-							<input
-								className='login-form__password-input'
-								type='text'
-								placeholder='رمز عبور'
-							/>
+              <Input
+                element="input"
+                className="login-form__password-input"
+                type="password"
+                placeholder="رمز عبور"/>
 							<i className='login-form__password-icon fa fa-lock-open'></i>
 						</div>
 						<button
@@ -57,10 +59,11 @@ function Login() {
 						</button>
 						<div className='login-form__password-setting'>
 							<label className='login-form__password-remember'>
-								<input
-									className='login-form__password-checkbox'
-									type='checkbox'
-								/>
+                <Input 
+                  element="input"
+                  type="checkbox"
+                  className="login-form__password-checkbox"
+                />
 								<span className='login-form__password-text'>مرا به خاطر داشته باش</span>
 							</label>
 							<label className='login-form__password-forget'>
@@ -79,7 +82,7 @@ function Login() {
 								لطفا از مرورگر های مطمئن و بروز مانند گوگل کروم و فایرفاکس استفاده کنید.
 							</li>
 							<li className='login__des-item'>
-								ما هرگز اطلاعات محرمانه شمارا از طریق ایمیل درخواست نمیکنیم.
+								ما هرگز اطلاعات محرمانه شما را از طریق ایمیل درخواست نمی کنیم.
 							</li>
 							<li className='login__des-item'>
 								لطفا کلمه عبور خود را در فواصل زمانی کوتاه تغییر دهید.
