@@ -1,0 +1,7 @@
+.success {
+	box-shadow: 0 0 5px var(--primary-color);
+}
+
+.error {
+	box-shadow: 0 0 5px red;
+}
