@@ -10,6 +10,7 @@ import './Input.css';
 
 // input
 function Input(props) {
+	console.log(props.validation);
 	// change handler
 	const inputReducer = (state, action) => {
 		switch (action.type) {

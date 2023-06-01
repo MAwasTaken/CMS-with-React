@@ -13,6 +13,7 @@ import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
 import Input from '../../Components/Form/Input';
 import Button from '../../Components/Form/Button';
+import { maxValidator, minValidator, requiredValidator } from '../../validators/rules';
 
 // login
 function Login() {
@@ -48,7 +49,7 @@ function Login() {
 								className='login-form__username-input'
 								type='text'
 								placeholder='نام کاربری یا آدرس ایمیل'
-
+								validation={[requiredValidator(), minValidator(8), maxValidator(20)]}
 							/>
 							<i className='login-form__username-icon fa fa-user'></i>
 						</div>
@@ -58,6 +59,7 @@ function Login() {
 								className='login-form__password-input'
 								type='password'
 								placeholder='رمز عبور'
+                validation={[requiredValidator(), minValidator(8), maxValidator(18)]}
 							/>
 							<i className='login-form__password-icon fa fa-lock-open'></i>
 						</div>
