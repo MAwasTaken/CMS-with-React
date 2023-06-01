@@ -12,9 +12,17 @@ import Topbar from '../../Components/Topbar/Topbar';
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
 import Input from '../../Components/Form/Input';
+import Button from '../../Components/Form/Button';
 
 // register
 function Register() {
+	// new user register
+	const registerNewUser = (event) => {
+		event.preventDefault();
+    
+		console.log('user registered');
+	};
+
 	return (
 		<>
 			<Topbar />
@@ -35,38 +43,40 @@ function Register() {
 						action='#'
 						className='login-form'>
 						<div className='login-form__username'>
-              <Input
-                element="input"
-                className="login-form__username-input"  
-                type="text"
-                placeholder="نام کاربری"
-              />
+							<Input
+								element='input'
+								className='login-form__username-input'
+								type='text'
+								placeholder='نام کاربری'
+							/>
 							<i className='login-form__username-icon fa fa-user'></i>
 						</div>
 						<div className='login-form__password'>
-              <Input
-                element="input"
-                className="login-form__password-input"
-                type="text"
-                placeholder="آدرس ایمیل"
-              />
+							<Input
+								element='input'
+								className='login-form__password-input'
+								type='text'
+								placeholder='آدرس ایمیل'
+							/>
 							<i className='login-form__password-icon fa fa-envelope'></i>
 						</div>
 						<div className='login-form__password'>
-              <Input
-                element="input"
-                className="login-form__password-input"
-                type="text"
-                placeholder="رمز عبور"
-              />
+							<Input
+								element='input'
+								className='login-form__password-input'
+								type='text'
+								placeholder='رمز عبور'
+							/>
 							<i className='login-form__password-icon fa fa-lock-open'></i>
 						</div>
-						<button
+						<Button
+							type='submit'
 							className='login-form__btn'
-							type='submit'>
+							onClick={registerNewUser}
+							disabled={false}>
 							<i className='login-form__btn-icon fa fa-user-plus'></i>
 							<span className='login-form__btn-text'>عضویت</span>
-						</button>
+						</Button>
 					</form>
 					<div className='login__des'>
 						<span className='login__des-title'>سلام کاربر محترم:</span>

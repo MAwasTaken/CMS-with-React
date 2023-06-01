@@ -12,9 +12,17 @@ import Topbar from '../../Components/Topbar/Topbar';
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
 import Input from '../../Components/Form/Input';
+import Button from '../../Components/Form/Button';
 
 // login
 function Login() {
+	// user login
+	const userLogin = (event) => {
+		event.preventDefault();
+
+		console.log('user login');
+	};
+
 	return (
 		<>
 			<Topbar />
@@ -36,34 +44,38 @@ function Login() {
 						className='login-form'>
 						<div className='login-form__username'>
 							<Input
-                element="input"
+								element='input'
 								className='login-form__username-input'
 								type='text'
 								placeholder='نام کاربری یا آدرس ایمیل'
+
 							/>
 							<i className='login-form__username-icon fa fa-user'></i>
 						</div>
 						<div className='login-form__password'>
-              <Input
-                element="input"
-                className="login-form__password-input"
-                type="password"
-                placeholder="رمز عبور"/>
+							<Input
+								element='input'
+								className='login-form__password-input'
+								type='password'
+								placeholder='رمز عبور'
+							/>
 							<i className='login-form__password-icon fa fa-lock-open'></i>
 						</div>
-						<button
+						<Button
 							className='login-form__btn'
-							type='submit'>
+							type='submit'
+							disabled={true}
+							onClick={userLogin}>
 							<i className='login-form__btn-icon fas fa-sign-out-alt'></i>
 							<span className='login-form__btn-text'>ورود</span>
-						</button>
+						</Button>
 						<div className='login-form__password-setting'>
 							<label className='login-form__password-remember'>
-                <Input 
-                  element="input"
-                  type="checkbox"
-                  className="login-form__password-checkbox"
-                />
+								<Input
+									element='input'
+									type='checkbox'
+									className='login-form__password-checkbox'
+								/>
 								<span className='login-form__password-text'>مرا به خاطر داشته باش</span>
 							</label>
 							<label className='login-form__password-forget'>
