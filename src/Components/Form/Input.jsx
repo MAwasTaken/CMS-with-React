@@ -7,10 +7,10 @@ import './Input.css';
 // packages
 
 // components
+import validator from '../../validators/validator';
 
 // input
 function Input(props) {
-	console.log(props.validation);
 	// change handler
 	const inputReducer = (state, action) => {
 		switch (action.type) {
@@ -18,7 +18,7 @@ function Input(props) {
 				return {
 					...state,
 					value: action.value,
-					isValid: true,
+					isValid: validator(action.value, props.validations),
 				};
 			}
 			default: {
@@ -33,7 +33,7 @@ function Input(props) {
 	});
 
 	const onChangeHandler = (event) =>
-		dispatch({ type: 'CHANGE', value: event.target.value, isValid: false });
+		dispatch({ type: 'CHANGE', value: event.target.value, isValid: false, validation: props.validations });
 
 	// input element creator
 	const element =

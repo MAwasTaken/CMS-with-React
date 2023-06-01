@@ -13,13 +13,19 @@ import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
 import Input from '../../Components/Form/Input';
 import Button from '../../Components/Form/Button';
+import {
+	requiredValidator,
+	minValidator,
+	maxValidator,
+	emailValidator,
+} from '../../validators/rules';
 
 // register
 function Register() {
 	// new user register
 	const registerNewUser = (event) => {
 		event.preventDefault();
-    
+
 		console.log('user registered');
 	};
 
@@ -48,6 +54,7 @@ function Register() {
 								className='login-form__username-input'
 								type='text'
 								placeholder='نام کاربری'
+								validations={[requiredValidator(), minValidator(8), maxValidator(20)]}
 							/>
 							<i className='login-form__username-icon fa fa-user'></i>
 						</div>
@@ -57,6 +64,7 @@ function Register() {
 								className='login-form__password-input'
 								type='text'
 								placeholder='آدرس ایمیل'
+								validations={[requiredValidator(), minValidator(10), emailValidator()]}
 							/>
 							<i className='login-form__password-icon fa fa-envelope'></i>
 						</div>
@@ -66,6 +74,7 @@ function Register() {
 								className='login-form__password-input'
 								type='text'
 								placeholder='رمز عبور'
+								validations={[requiredValidator(), minValidator(8), maxValidator(18)]}
 							/>
 							<i className='login-form__password-icon fa fa-lock-open'></i>
 						</div>

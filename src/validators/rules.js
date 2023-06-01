@@ -22,3 +22,4 @@ const emailValidator = () => ({
 });
 
 export { requiredValidator, minValidator, maxValidator, emailValidator };
+export default { requiredValue, minValue, maxValue, emailValue };
