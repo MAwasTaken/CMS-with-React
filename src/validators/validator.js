@@ -1,3 +1,4 @@
+// components
 import rules from './rules';
 
 const validator = (value, validations) => {
@@ -21,4 +22,5 @@ const validator = (value, validations) => {
 	else return true;
 };
 
+// exports
 export default validator;

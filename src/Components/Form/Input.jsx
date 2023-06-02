@@ -1,5 +1,5 @@
 // react
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 
 // styles
 import './Input.css';
@@ -33,7 +33,19 @@ function Input(props) {
 	});
 
 	const onChangeHandler = (event) =>
-		dispatch({ type: 'CHANGE', value: event.target.value, isValid: false, validation: props.validations });
+		dispatch({
+			type: 'CHANGE',
+			value: event.target.value,
+			isValid: false,
+			validation: props.validations,
+		});
+
+	const { value, isValid } = mainInput;
+	const { id, onInputHandler } = props;
+
+	useEffect(() => {
+		onInputHandler(id, value, isValid);
+	}, [value]);
 
 	// input element creator
 	const element =

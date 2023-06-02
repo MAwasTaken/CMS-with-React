@@ -171,3 +171,11 @@
 	margin-right: 2rem;
 	margin-top: 1rem;
 }
+
+.login-form__btn-success {
+  background-color: #2bce56;
+}
+
+.login-form__btn-error {
+  background-color: #a8aaaf;
+}

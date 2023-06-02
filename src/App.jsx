@@ -1,7 +1,6 @@
 // react
 import React from "react";
 import { useRoutes } from "react-router-dom";
-import routes from "./routes";
 
 // styles
 import "./App.css";
@@ -9,6 +8,7 @@ import "./App.css";
 // packages
 
 // components
+import routes from "./routes";
 
 // app
 function App() {
