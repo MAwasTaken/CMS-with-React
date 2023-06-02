@@ -44,8 +44,6 @@ function Login() {
 		console.log('user login');
 	};
 
-  console.log(formState);
-
 	return (
 		<>
 			<Topbar />
@@ -75,7 +73,7 @@ function Login() {
 								validations={[
                   requiredValidator(),
 									minValidator(8),
-									maxValidator(20),
+                  emailValidator()
 								]}
                 onInputHandler={onInputHandler}
 							/>
