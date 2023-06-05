@@ -23,14 +23,7 @@ import { useForm } from '../../hooks/useForms';
 
 // register
 function Register() {
-	// new user register
-	const registerNewUser = (event) => {
-		event.preventDefault();
-
-		console.log('user registered');
-	};
-
-  // form handler
+	// form handler
 	const [formState, onInputHandler] = useForm(
 		{
 			name: {
@@ -52,6 +45,29 @@ function Register() {
 		},
 		false
 	);
+
+	// new user register
+	const registerNewUser = (event) => {
+		event.preventDefault();
+
+		const newUserInfos = {
+			name: formState.inputs.name.value,
+			username: formState.inputs.username.value,
+			email: formState.inputs.email.value,
+			password: formState.inputs.password.value,
+			confirmPassword: formState.inputs.password.value,
+		};
+
+		fetch(`http://localhost:3000/v1/auth/register`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(newUserInfos),
+		})
+			.then((res) => res.json())
+			.then((result) => console.log(result));
+	};
 
 	// jsx
 	return (
@@ -81,7 +97,7 @@ function Register() {
 								type='text'
 								placeholder='نام و نام خانوادگی'
 								validations={[requiredValidator(), minValidator(5), maxValidator(20)]}
-                onInputHandler={onInputHandler}
+								onInputHandler={onInputHandler}
 							/>
 							<i className='login-form__username-icon fa fa-user'></i>
 						</div>
@@ -93,7 +109,7 @@ function Register() {
 								type='text'
 								placeholder='نام کاربری'
 								validations={[requiredValidator(), minValidator(8), maxValidator(20)]}
-                onInputHandler={onInputHandler}
+								onInputHandler={onInputHandler}
 							/>
 							<i className='login-form__username-icon fa fa-user'></i>
 						</div>
@@ -105,7 +121,7 @@ function Register() {
 								type='text'
 								placeholder='آدرس ایمیل'
 								validations={[requiredValidator(), minValidator(10), emailValidator()]}
-                onInputHandler={onInputHandler}
+								onInputHandler={onInputHandler}
 							/>
 							<i className='login-form__password-icon fa fa-envelope'></i>
 						</div>
@@ -117,12 +133,14 @@ function Register() {
 								type='password'
 								placeholder='رمز عبور'
 								validations={[requiredValidator(), minValidator(8), maxValidator(18)]}
-                onInputHandler={onInputHandler}
+								onInputHandler={onInputHandler}
 							/>
 							<i className='login-form__password-icon fa fa-lock-open'></i>
 						</div>
 						<Button
-							className={`login-form__btn ${formState.isFormValid ? 'login-form__btn-success' : 'login-form__btn-error'}`}
+							className={`login-form__btn ${
+								formState.isFormValid ? 'login-form__btn-success' : 'login-form__btn-error'
+							}`}
 							type='submit'
 							disabled={!formState.isFormValid}
 							onClick={registerNewUser}>
