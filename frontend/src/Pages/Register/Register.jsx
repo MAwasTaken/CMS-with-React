@@ -1,5 +1,5 @@
 // react
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 // styles
@@ -21,8 +21,14 @@ import {
 } from '../../validators/rules';
 import { useForm } from '../../hooks/useForms';
 
+// contexts
+import AuthContext from '../../context/authContext';
+
 // register
 function Register() {
+	// authorization context
+	const authContext = useContext(AuthContext);
+
 	// form handler
 	const [formState, onInputHandler] = useForm(
 		{
@@ -66,7 +72,11 @@ function Register() {
 			body: JSON.stringify(newUserInfos),
 		})
 			.then((res) => res.json())
-			.then((result) => console.log(result));
+			.then((result) => {
+				console.log(result);
+
+				authContext.login(result.user, result.accessToken);
+			});
 	};
 
 	// jsx

@@ -24,8 +24,10 @@ function App() {
 	const [userInfos, setUserInfos] = useState(false);
 
 	// login
-	const login = (token) => {
+	const login = (userInfos, token) => {
 		setToken(token);
+		setIsLoggedIn(true);
+		setUserInfos(userInfos);
 
 		localStorage.setItem('user', JSON.stringify({ token }));
 	};
