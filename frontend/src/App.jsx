@@ -1,5 +1,5 @@
 // react
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useRoutes } from 'react-router-dom';
 
 // styles
@@ -24,20 +24,36 @@ function App() {
 	const [userInfos, setUserInfos] = useState(false);
 
 	// login
-	const login = (userInfos, token) => {
+	const login = useCallback((userInfos, token) => {
 		setToken(token);
 		setIsLoggedIn(true);
 		setUserInfos(userInfos);
 
 		localStorage.setItem('user', JSON.stringify({ token }));
-	};
+	}, []);
 
 	// logout
-	const logout = () => {
+	const logout = useCallback(() => {
 		setToken(null);
 
 		localStorage.removeItem('user');
-	};
+	}, []);
+
+	useEffect(() => {
+		const localStorageData = JSON.parse(localStorage.getItem('user'));
+		if (localStorageData) {
+			fetch(`http://localhost:3000/v1/auth/me`, {
+				headers: {
+					Authorization: `Bearer ${localStorageData.token}`,
+				},
+			})
+				.then((res) => res.json())
+				.then((userData) => {
+					setIsLoggedIn(true);
+					setUserInfos(userData);
+				});
+		}
+	}, [login]);
 
 	// jsx
 	return (

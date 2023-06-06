@@ -72,11 +72,7 @@ function Register() {
 			body: JSON.stringify(newUserInfos),
 		})
 			.then((res) => res.json())
-			.then((result) => {
-				console.log(result);
-
-				authContext.login(result.user, result.accessToken);
-			});
+			.then((result) => authContext.login(result.user, result.accessToken));
 	};
 
 	// jsx
