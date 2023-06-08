@@ -190,7 +190,6 @@ function Navbar() {
 							</li>
 						</ul>
 					</div>
-
 					<div className='main-header__left'>
 						<a
 							href='#'

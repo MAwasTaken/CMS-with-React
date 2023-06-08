@@ -41,7 +41,32 @@ function Login() {
 	const userLogin = (event) => {
 		event.preventDefault();
 
-		console.log('user login');
+		const userData = {
+			identifier: formState.inputs.username.value,
+			password: formState.inputs.password.value,
+		};
+
+		fetch(`http://localhost:3000/v1/auth/login`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(userData),
+		})
+			.then((res) => {
+				if (!res.ok) {
+					return res.text().then((text) => {
+						throw new Error(text);
+					});
+				} else {
+					return res.json();
+				}
+			})
+			.then((result) => console.log(result))
+			.catch((err) => {
+				console.log(`err => ${err}`);
+				alert('همچین کاربری وجود ندارد!');
+			});
 	};
 
 	return (
@@ -70,12 +95,8 @@ function Login() {
 								className='login-form__username-input'
 								type='text'
 								placeholder='نام کاربری یا آدرس ایمیل'
-								validations={[
-                  requiredValidator(),
-									minValidator(8),
-                  emailValidator()
-								]}
-                onInputHandler={onInputHandler}
+								validations={[requiredValidator(), minValidator(8)]}
+								onInputHandler={onInputHandler}
 							/>
 							<i className='login-form__username-icon fa fa-user'></i>
 						</div>
@@ -92,7 +113,9 @@ function Login() {
 							<i className='login-form__password-icon fa fa-lock-open'></i>
 						</div>
 						<Button
-							className={`login-form__btn ${formState.isFormValid ? 'login-form__btn-success' : 'login-form__btn-error'}`}
+							className={`login-form__btn ${
+								formState.isFormValid ? 'login-form__btn-success' : 'login-form__btn-error'
+							}`}
 							type='submit'
 							disabled={!formState.isFormValid}
 							onClick={userLogin}>
