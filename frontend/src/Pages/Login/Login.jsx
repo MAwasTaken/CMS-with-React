@@ -1,5 +1,5 @@
 // react
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 // styles
@@ -8,21 +8,25 @@ import './Login.css';
 // packages
 
 // components
-import Topbar from '../../components/Topbar/Topbar';
-import Navbar from '../../components/Navbar/Navbar';
-import Footer from '../../components/Footer/Footer';
+import Topbar from '../../Components/Topbar/Topbar';
+import Navbar from '../../Components/Navbar/Navbar';
+import Footer from '../../Components/Footer/Footer';
 import Input from '../../components/Form/Input';
 import Button from '../../components/Form/Button';
-import {
-	emailValidator,
-	maxValidator,
-	minValidator,
-	requiredValidator,
-} from '../../validators/rules';
+import { maxValidator, minValidator, requiredValidator } from '../../validators/rules';
+
+// hooks
 import { useForm } from '../../hooks/useForms';
+
+// context
+import AuthContext from '../../context/authContext';
 
 // login
 function Login() {
+	// authorization context
+	const authContext = useContext(AuthContext);
+
+	// form validation
 	const [formState, onInputHandler] = useForm(
 		{
 			username: {
@@ -62,7 +66,10 @@ function Login() {
 					return res.json();
 				}
 			})
-			.then((result) => console.log(result))
+			.then((result) => {
+				console.log(result);
+				authContext.login({}, result.accessToken);
+			})
 			.catch((err) => {
 				console.log(`err => ${err}`);
 				alert('همچین کاربری وجود ندارد!');

@@ -16,6 +16,7 @@ import AuthContext from '../../context/authContext';
 function Navbar() {
 	// authorization context
 	const authContext = useContext(AuthContext);
+  console.log(authContext);
 
 	// jsx
 	return (

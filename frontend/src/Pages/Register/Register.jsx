@@ -11,8 +11,8 @@ import './Register.css';
 import Topbar from '../../Components/Topbar/Topbar';
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
-import Input from '../../Components/Form/Input';
-import Button from '../../Components/Form/Button';
+import Input from '../../components/Form/Input';
+import Button from '../../components/Form/Button';
 import {
 	requiredValidator,
 	minValidator,
