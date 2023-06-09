@@ -1,5 +1,5 @@
 // react
-import React, { useContext } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // styles
@@ -7,6 +7,7 @@ import './Login.css';
 
 // packages
 import swal from 'sweetalert';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 // components
 import Topbar from '../../Components/Topbar/Topbar';
@@ -87,6 +88,13 @@ function Login() {
 			});
 	};
 
+	// google recaptcha
+	const [isGoogleReCaptchaVerify, setIsGoogleReCaptchaVerify] = useState(false);
+
+	// google recaptcha handler
+	const onChangeHandler = () => setIsGoogleReCaptchaVerify(true);
+
+	// jsx
 	return (
 		<>
 			<Topbar />
@@ -130,12 +138,19 @@ function Login() {
 							/>
 							<i className='login-form__password-icon fa fa-lock-open'></i>
 						</div>
+						<ReCAPTCHA
+							sitekey='6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+							onChange={onChangeHandler}
+						/>
+						,
 						<Button
 							className={`login-form__btn ${
-								formState.isFormValid ? 'login-form__btn-success' : 'login-form__btn-error'
+								formState.isFormValid && isGoogleReCaptchaVerify
+									? 'login-form__btn-success'
+									: 'login-form__btn-error'
 							}`}
 							type='submit'
-							disabled={!formState.isFormValid}
+							disabled={!(formState.isFormValid && isGoogleReCaptchaVerify)}
 							onClick={userLogin}>
 							<i className='login-form__btn-icon fas fa-sign-out-alt'></i>
 							<span className='login-form__btn-text'>ورود</span>
