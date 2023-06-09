@@ -185,3 +185,9 @@
   align-items: center;
   justify-content: center;
 }
+
+.recaptcha-parent {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
