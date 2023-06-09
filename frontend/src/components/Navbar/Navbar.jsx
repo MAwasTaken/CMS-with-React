@@ -16,7 +16,6 @@ import AuthContext from '../../context/authContext';
 function Navbar() {
 	// authorization context
 	const authContext = useContext(AuthContext);
-  console.log(authContext);
 
 	// jsx
 	return (
@@ -206,7 +205,9 @@ function Navbar() {
 							<Link
 								href='#'
 								className='main-header__profile'>
-								<span className='main-header__profile-text'>{authContext.userInfos.name}</span>
+								<span className='main-header__profile-text'>
+									{authContext.userInfos.name ? authContext.userInfos.name : 'پنل کاربری'}
+								</span>
 							</Link>
 						) : (
 							<Link

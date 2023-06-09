@@ -41,6 +41,7 @@ function App() {
 
 	useEffect(() => {
 		const localStorageData = JSON.parse(localStorage.getItem('user'));
+    console.log('get me');
 		if (localStorageData) {
 			fetch(`http://localhost:3000/v1/auth/me`, {
 				headers: {

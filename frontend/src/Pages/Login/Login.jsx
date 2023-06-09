@@ -1,11 +1,12 @@
 // react
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 // styles
 import './Login.css';
 
 // packages
+import swal from 'sweetalert';
 
 // components
 import Topbar from '../../Components/Topbar/Topbar';
@@ -67,12 +68,22 @@ function Login() {
 				}
 			})
 			.then((result) => {
-				console.log(result);
 				authContext.login({}, result.accessToken);
+				swal({
+					title: 'با موفقیت وارد شدید',
+					icon: 'success',
+					buttons: 'ورود به پنل کاربری',
+				}).then((value) => {
+					location.href = '/';
+				});
 			})
 			.catch((err) => {
 				console.log(`err => ${err}`);
-				alert('همچین کاربری وجود ندارد!');
+				swal({
+					title: 'همچین کاربری وجود ندارد',
+					icon: 'error',
+					buttons: 'تلاش دوباره',
+				});
 			});
 	};
 

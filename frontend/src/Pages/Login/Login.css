@@ -179,3 +179,9 @@
 .login-form__btn-error {
   background-color: #a8aaaf;
 }
+
+.swal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
