@@ -102,7 +102,7 @@ function Register() {
 								className='login-form__username-input'
 								type='text'
 								placeholder='نام و نام خانوادگی'
-								validations={[requiredValidator(), minValidator(5), maxValidator(20)]}
+								validations={[requiredValidator(), minValidator(2), maxValidator(20)]}
 								onInputHandler={onInputHandler}
 							/>
 							<i className='login-form__username-icon fa fa-user'></i>
