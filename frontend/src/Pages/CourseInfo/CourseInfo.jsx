@@ -1,5 +1,5 @@
 // react
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 // styles
@@ -9,27 +9,40 @@ import './CourseInfo.css';
 import Accordion from 'react-bootstrap/Accordion';
 
 // components
-import Topbar from '../../components/Topbar/Topbar';
-import Navbar from '../../components/Navbar/Navbar';
-import Footer from '../../components/Footer/Footer';
+import Topbar from '../../Components/Topbar/Topbar';
+import Navbar from '../../Components/Navbar/Navbar';
+import Footer from '../../Components/Footer/Footer';
 import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb';
 import CourseDetailBox from '../../Components/CourseDetailBox/CourseDetailBox';
 import CommentTextarea from '../../Components/CommentsTextarea/CommentTextarea';
 
 // course info
 function CourseInfo() {
-  // url params
+	// url params
 	const { courseName } = useParams();
 
-  // get all course infos
+  // course states
+	const [comments, setComments] = useState([]);
+	const [sessions, setSessions] = useState([]);
+	const [courseDetails, setCourseDetails] = useState({});
+
+	// get all course infos
 	useEffect(() => {
 		fetch(`http://localhost:3000/v1/courses/${courseName}`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
-      }
-    }).then(res => res.json()).then(courseInfos => console.log(courseInfos));
+			method: 'POST',
+			headers: {
+				Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+			},
+		})
+			.then((res) => res.json())
+			.then((courseInfos) => {
+				console.log(courseInfos);
+				setComments(courseInfos.comments);
+				setSessions(courseInfos.sessions);
+				setCourseDetails(courseInfos);
+			});
 	}, []);
+
 	// jsx
 	return (
 		<>
@@ -50,15 +63,11 @@ function CourseInfo() {
 							<a
 								href='#'
 								className='course-info__link'>
-								آموزش برنامه نویسی فرانت اند
+							  آموزش برنامه نویسی فرانت اند
 							</a>
-							<h1 className='course-info__title'>آموزش 20 کتابخانه جاوااسکریپت برای بازار کار</h1>
+							<h1 className='course-info__title'>{courseDetails.name}</h1>
 							<p className='course-info__text'>
-								امروزه کتابخانه‌ها کد نویسی را خیلی آسان و لذت بخش تر کرده اند. به قدری که حتی
-								امروزه هیچ شرکت برنامه نویسی پروژه های خود را با Vanilla Js پیاده سازی نمی کند و
-								همیشه از کتابخانه ها و فریمورک های موجود استفاده می کند. پس شما هم اگه میخواید یک
-								برنامه نویس عالی فرانت اند باشید، باید کتابخانه های کاربردی که در بازار کار استفاده
-								می شوند را به خوبی بلد باشید
+                {courseDetails.description}
 							</p>
 							<div className='course-info__social-media'>
 								<a
