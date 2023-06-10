@@ -17,8 +17,10 @@ function Navbar() {
 	// authorization context
 	const authContext = useContext(AuthContext);
 
+  // all nav bar menus
 	const [allMenus, setAllMenus] = useState([]);
-
+  
+  // get and show all menus
 	useEffect(() => {
 		fetch(`http://localhost:3000/v1/menus`)
 			.then((res) => res.json())
