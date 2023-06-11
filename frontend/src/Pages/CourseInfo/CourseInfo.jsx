@@ -278,10 +278,9 @@ function CourseInfo() {
 								</p>
 							</div>
 							{/* finish teacher details */}
-							<CommentTextarea />
+							{/* <CommentTextarea comments={comments} /> */}
 						</div>
 						{/* finish right side section */}
-
 						{/* start left side section */}
 						<div className='col-4'>
 							<div className='courses-info'>
