@@ -30,10 +30,13 @@ function CourseInfo() {
 
 	// get all course infos
 	useEffect(() => {
+		const localStorageData = JSON.parse(localStorage.getItem('user'));
+    console.log(localStorageData);
+
 		fetch(`http://localhost:3000/v1/courses/${courseName}`, {
 			method: 'POST',
 			headers: {
-				Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+				Authorization: `Bearer ${localStorageData === null ? null : localStorageData.token}`,
 			},
 		})
 			.then((res) => res.json())

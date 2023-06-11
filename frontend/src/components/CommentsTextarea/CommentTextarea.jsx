@@ -1,5 +1,5 @@
 // react
-import React from 'react';
+import React, { useContext } from 'react';
 
 // styles
 import './CommentTextarea.css';
@@ -8,8 +8,14 @@ import './CommentTextarea.css';
 
 // components
 
+// contexts
+import AuthContext from '../../context/authContext';
+
 // comment text area
 function CommentTextarea({ comments }) {
+  // authorization context
+	const authContext = useContext(AuthContext);
+
 	// jsx
 	return (
 		<div className='comments'>
@@ -92,7 +98,6 @@ function CommentTextarea({ comments }) {
 					</>
 				)}
 			</div>
-
 			<div className='comments__rules'>
 				<span className='comments__rules-title'>قوانین ثبت دیدگاه</span>
 				<span className='comments__rules-item'>
@@ -113,24 +118,32 @@ function CommentTextarea({ comments }) {
 					از درج دیدگاه های تکراری پرهیز نمایید.
 				</span>
 			</div>
-			<div className='comments__respond'>
-				<div className='comments__score'>
-					<span className='comments__score-title'>امتیاز شما</span>
-					<div className='comments__score-input'>
-						<span className='comments__score-input-text'>امتیاز خود را انتخاب کنید</span>
-						<i className='fas fa-angle-down	 comments__input-icon'></i>
+			{authContext.isLoggedIn === true ? (
+				<div className='comments__respond'>
+					<div className='comments__score'>
+						<span className='comments__score-title'>امتیاز شما</span>
+						<div className='comments__score-input'>
+							<span className='comments__score-input-text'>امتیاز خود را انتخاب کنید</span>
+							<i className='fas fa-angle-down	 comments__input-icon'></i>
+						</div>
 					</div>
+					<div className='comments__respond-content'>
+						<div className='comments__respond-title'>دیدگاه شما *</div>
+						<textarea className='comments__score-input-respond'></textarea>
+					</div>
+					<button
+						type='submit'
+						className='comments__respond-btn'>
+						ارسال
+					</button>
 				</div>
-				<div className='comments__respond-content'>
-					<div className='comments__respond-title'>دیدگاه شما *</div>
-					<textarea className='comments__score-input-respond'></textarea>
+			) : (
+				<div className='alert alert-danger'>
+					برای ثبت کامنت باید
+					<Link to='/login'>لاگین</Link>
+					کنید
 				</div>
-				<button
-					type='submit'
-					className='comments__respond-btn'>
-					ارسال
-				</button>
-			</div>
+			)}
 		</div>
 	);
 }
