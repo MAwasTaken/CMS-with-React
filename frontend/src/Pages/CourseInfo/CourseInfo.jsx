@@ -21,10 +21,12 @@ function CourseInfo() {
 	// url params
 	const { courseName } = useParams();
 
-  // course states
+	// course states
 	const [comments, setComments] = useState([]);
 	const [sessions, setSessions] = useState([]);
 	const [courseDetails, setCourseDetails] = useState({});
+	const [createdAt, setCreatedAt] = useState('');
+	const [updatedAt, setUpdatedAt] = useState('');
 
 	// get all course infos
 	useEffect(() => {
@@ -40,6 +42,8 @@ function CourseInfo() {
 				setComments(courseInfos.comments);
 				setSessions(courseInfos.sessions);
 				setCourseDetails(courseInfos);
+				setCreatedAt(courseInfos.createdAt);
+				setUpdatedAt(courseInfos.updatedAt);
 			});
 	}, []);
 
@@ -63,12 +67,10 @@ function CourseInfo() {
 							<a
 								href='#'
 								className='course-info__link'>
-							  آموزش برنامه نویسی فرانت اند
+								آموزش برنامه نویسی فرانت اند
 							</a>
 							<h1 className='course-info__title'>{courseDetails.name}</h1>
-							<p className='course-info__text'>
-                {courseDetails.description}
-							</p>
+							<p className='course-info__text'>{courseDetails.description}</p>
 							<div className='course-info__social-media'>
 								<a
 									href='#'
@@ -87,7 +89,6 @@ function CourseInfo() {
 								</a>
 							</div>
 						</div>
-
 						<div className='col-6'>
 							<video
 								src=''
@@ -110,33 +111,20 @@ function CourseInfo() {
 									<div className='row'>
 										<CourseDetailBox
 											title='وضعیت دوره:'
-											subTitle='به اتمام رسیده'
+											subTitle={
+												courseDetails.isComplete === 1 ? 'به اتمام رسیده' : 'در حال برگذاری'
+											}
 											icon='fas fa-graduation-cap'
 										/>
 										<CourseDetailBox
-											title='مدت زمان دوره:'
-											subTitle='19 ساعت'
+											title='زمان برگذاری'
+											subTitle={createdAt.slice(0, 10)}
 											icon='fas fa-clock'
 										/>
 										<CourseDetailBox
 											title='آخرین بروزرسانی:'
-											subTitle='1401/03/02'
+											subTitle={updatedAt.slice(0, 10)}
 											icon='fas fa-calendar-alt'
-										/>
-										<CourseDetailBox
-											title='روش پشتیبانی'
-											subTitle='آنلاین'
-											icon='fas fa-user-alt'
-										/>
-										<CourseDetailBox
-											title='پیش نیاز:'
-											subTitle='HTML CSS'
-											icon='fas fa-info-circle'
-										/>
-										<CourseDetailBox
-											title='نوع مشاهده:'
-											subTitle='ضبط شده / آنلاین'
-											icon='fas fa-play'
 										/>
 									</div>
 								</div>
@@ -160,7 +148,6 @@ function CourseInfo() {
 								</div>
 							</div>
 							{/* finish course progress */}
-
 							{/* start introduction */}
 							<div className='introduction'>
 								<div className='introduction__item'>
@@ -239,64 +226,27 @@ function CourseInfo() {
 									<Accordion.Item
 										className='accordion'
 										eventKey='0'>
-										<Accordion.Header>معرفی دوره</Accordion.Header>
-										<Accordion.Body className='introduction__accordion-body'>
-											<div className='introduction__accordion-right'>
-												<span className='introduction__accordion-count'>1</span>
-												<i className='fab fa-youtube introduction__accordion-icon'></i>
-												<a
-													href='#'
-													className='introduction__accordion-link'>
-													معرفی دوره + چرا یادگیری کتابخانه ها ضروری است؟
-												</a>
-											</div>
-											<div className='introduction__accordion-left'>
-												<span className='introduction__accordion-time'>18:34</span>
-											</div>
-										</Accordion.Body>
-									</Accordion.Item>
-									<Accordion.Item
-										className='accordion'
-										eventKey='1'>
-										<Accordion.Header>اصطلاحات مقدماتی مربوط به بک اند</Accordion.Header>
-										<Accordion.Body className='introduction__accordion-body'>
-											<div className='introduction__accordion-right'>
-												<span className='introduction__accordion-count'>1</span>
-												<i className='fab fa-youtube introduction__accordion-icon'></i>
-												<a
-													href='#'
-													className='introduction__accordion-link'>
-													جلسه دوم
-												</a>
-											</div>
-											<div className='introduction__accordion-left'>
-												<span className='introduction__accordion-time'>18:34</span>
-											</div>
-										</Accordion.Body>
-									</Accordion.Item>
-									<Accordion.Item
-										className='accordion'
-										eventKey='2'>
-										<Accordion.Header>اصطلاحات مقدماتی مربوط به بک اند</Accordion.Header>
-										<Accordion.Body className='introduction__accordion-body'>
-											<div className='introduction__accordion-right'>
-												<span className='introduction__accordion-count'>1</span>
-												<i className='fab fa-youtube introduction__accordion-icon'></i>
-												<a
-													href='#'
-													className='introduction__accordion-link'>
-													جلسه سوم
-												</a>
-											</div>
-											<div className='introduction__accordion-left'>
-												<span className='introduction__accordion-time'>18:34</span>
-											</div>
-										</Accordion.Body>
+										<Accordion.Header>جلسات دوره</Accordion.Header>
+										{sessions.map((session, index) => (
+											<Accordion.Body className='introduction__accordion-body'>
+												<div className='introduction__accordion-right'>
+													<span className='introduction__accordion-count'>{index + 1}</span>
+													<i className='fab fa-youtube introduction__accordion-icon'></i>
+													<a
+														href='#'
+														className='introduction__accordion-link'>
+														{session.title}
+													</a>
+												</div>
+												<div className='introduction__accordion-left'>
+													<span className='introduction__accordion-time'>{session.time}</span>
+												</div>
+											</Accordion.Body>
+										))}
 									</Accordion.Item>
 								</Accordion>
 							</div>
 							{/* finish introduction */}
-
 							{/* start teacher details */}
 							<div className='techer-details'>
 								<div className='techer-details__header'>
@@ -337,10 +287,17 @@ function CourseInfo() {
 							<div className='courses-info'>
 								<div className='course-info'>
 									<div className='course-info__register'>
-										<span className='course-info__register-title'>
-											<i className='fas fa-graduation-cap course-info__register-icon'></i>
-											دانشجوی دوره هستید
-										</span>
+										{courseDetails.isUserRegisteredToThisCourse === true ? (
+											<span className='course-info__register-title'>
+												<i className='fas fa-graduation-cap course-info__register-icon'></i>
+												دانشجوی دوره هستید!
+											</span>
+										) : (
+											<span className='course-info__register-title'>
+												<i className='fas fa-graduation-cap course-info__register-icon'></i>
+												ثبت نام در دوره
+											</span>
+										)}
 									</div>
 								</div>
 								<div className='course-info'>
@@ -349,7 +306,9 @@ function CourseInfo() {
 											<div className='course-info__total-sale'>
 												<i className='fas fa-user-graduate course-info__total-sale-icon'></i>
 												<span className='course-info__total-sale-text'>تعداد دانشجو :</span>
-												<span className='course-info__total-sale-number'>178</span>
+												<span className='course-info__total-sale-number'>
+													{courseDetails.courseStudentsCount}
+												</span>
 											</div>
 										</div>
 										<div className='course-info__bottom'>
