@@ -1,5 +1,6 @@
 // react
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // styles
 import './CommentTextarea.css';
@@ -12,9 +13,15 @@ import './CommentTextarea.css';
 import AuthContext from '../../context/authContext';
 
 // comment text area
-function CommentTextarea({ comments }) {
-  // authorization context
+function CommentTextarea({ comments, submitComment }) {
+	// authorization context
 	const authContext = useContext(AuthContext);
+
+	// submit new comment
+	const [newCommentBody, setNewCommentBody] = useState('');
+
+	// textarea change handler
+	const onChangeHandler = (event) => setNewCommentBody(event.target.value);
 
 	// jsx
 	return (
@@ -129,9 +136,14 @@ function CommentTextarea({ comments }) {
 					</div>
 					<div className='comments__respond-content'>
 						<div className='comments__respond-title'>دیدگاه شما *</div>
-						<textarea className='comments__score-input-respond'></textarea>
+						<textarea
+							className='comments__score-input-respond'
+							onChange={onChangeHandler}>
+							{newCommentBody}
+						</textarea>
 					</div>
 					<button
+						onClick={() => submitComment(newCommentBody)}
 						type='submit'
 						className='comments__respond-btn'>
 						ارسال

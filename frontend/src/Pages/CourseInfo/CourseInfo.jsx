@@ -7,6 +7,7 @@ import './CourseInfo.css';
 
 // packages
 import Accordion from 'react-bootstrap/Accordion';
+import swal from 'sweetalert';
 
 // components
 import Topbar from '../../Components/Topbar/Topbar';
@@ -31,7 +32,6 @@ function CourseInfo() {
 	// get all course infos
 	useEffect(() => {
 		const localStorageData = JSON.parse(localStorage.getItem('user'));
-    console.log(localStorageData);
 
 		fetch(`http://localhost:3000/v1/courses/${courseName}`, {
 			method: 'POST',
@@ -41,7 +41,6 @@ function CourseInfo() {
 		})
 			.then((res) => res.json())
 			.then((courseInfos) => {
-				console.log(courseInfos);
 				setComments(courseInfos.comments);
 				setSessions(courseInfos.sessions);
 				setCourseDetails(courseInfos);
@@ -49,6 +48,31 @@ function CourseInfo() {
 				setUpdatedAt(courseInfos.updatedAt);
 			});
 	}, []);
+
+	// submit new comment
+	const submitComment = (newCommentBody) => {
+		const localStorageData = JSON.parse(localStorage.getItem('user'));
+
+		fetch(`http://localhost:3000/v1/comments`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${localStorageData}`,
+			},
+			body: JSON.stringify({
+				body: newCommentBody,
+				courseShortName: courseName,
+			}),
+		})
+			.then((res) => res.json())
+			.then((result) =>
+				swal({
+					title: 'کامنت مورد نظر با موفقیت ثبت شد',
+					icon: 'success',
+          buttons: "تایید"
+				})
+			);
+	};
 
 	// jsx
 	return (
@@ -281,7 +305,10 @@ function CourseInfo() {
 								</p>
 							</div>
 							{/* finish teacher details */}
-							{/* <CommentTextarea comments={comments} /> */}
+							{/* <CommentTextarea
+								comments={comments}
+								submitComment={submitComment}
+							/> */}
 						</div>
 						{/* finish right side section */}
 						{/* start left side section */}
