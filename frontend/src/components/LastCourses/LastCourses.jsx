@@ -1,5 +1,5 @@
 // react
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 // styles
 import './LastCourses.css';
@@ -12,6 +12,18 @@ import CourseBox from '../CourseBox/CourseBox';
 
 // last courses
 function LastCourses() {
+	// all courses
+	const [courses, setCourses] = useState([]);
+
+	useEffect(() => {
+		fetch(`http://localhost:3000/v1/courses`)
+			.then((res) => res.json())
+			.then((allCourses) => {
+				console.log(allCourses);
+				setCourses(allCourses);
+			});
+	}, []);
+
 	// jsx
 	return (
 		<div className='courses'>
@@ -20,17 +32,14 @@ function LastCourses() {
 					title='جدیدترین دوره ها'
 					description='سکوی پرتاب شما به سمت موفقیت'
 					btnTitle='تمامی دوره ها'
-          btnHref='courses'
+					btnHref='courses'
 				/>
 				<div className='course-content'>
 					<div className='container'>
 						<div className='row'>
-							<CourseBox />
-							<CourseBox />
-							<CourseBox />
-							<CourseBox />
-							<CourseBox />
-							<CourseBox />
+							{/* {courses.splice(0, 6).map((course) => (
+								<CourseBox {...courses} />
+							))} */}
 						</div>
 					</div>
 				</div>
