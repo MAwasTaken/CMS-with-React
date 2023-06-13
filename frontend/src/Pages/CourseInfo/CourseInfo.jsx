@@ -69,7 +69,7 @@ function CourseInfo() {
 				swal({
 					title: 'کامنت مورد نظر با موفقیت ثبت شد',
 					icon: 'success',
-          buttons: "تایید"
+					buttons: 'تایید',
 				})
 			);
 	};
@@ -305,10 +305,10 @@ function CourseInfo() {
 								</p>
 							</div>
 							{/* finish teacher details */}
-							{/* <CommentTextarea
+							<CommentTextarea
 								comments={comments}
 								submitComment={submitComment}
-							/> */}
+							/>
 						</div>
 						{/* finish right side section */}
 						{/* start left side section */}

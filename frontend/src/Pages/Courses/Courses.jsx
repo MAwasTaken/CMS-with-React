@@ -1,5 +1,5 @@
 // react
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 // styles
 
@@ -14,6 +14,16 @@ import CourseBox from '../../Components/CourseBox/CourseBox';
 
 // courses
 function Courses() {
+  // all courses
+	const [allCourses, setCourses] = useState([]);
+
+  // get all courses
+	useEffect(() => {
+		fetch(`http://localhost:3000/v1/courses`)
+			.then((res) => res.json())
+			.then((allCourses) => setCourses(allCourses));
+	}, []);
+
 	// jsx
 	return (
 		<>
@@ -30,12 +40,12 @@ function Courses() {
 					<div className='courses-content'>
 						<div className='container'>
 							<div className='row'>
-								<CourseBox />
-								<CourseBox />
-								<CourseBox />
-								<CourseBox />
-								<CourseBox />
-								<CourseBox />
+								{allCourses.map((course, index) => (
+									<CourseBox
+										{...course}
+										key={index}
+									/>
+								))}
 							</div>
 						</div>
 					</div>
