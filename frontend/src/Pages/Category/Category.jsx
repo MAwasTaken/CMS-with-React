@@ -27,7 +27,7 @@ function Category() {
 		fetch(`http://localhost:3000/v1/courses/category/${categoryName}`)
 			.then((res) => res.json())
 			.then((allCourses) => setCourses(allCourses));
-	}, []);
+	}, [categoryName]);
 
 	// jsx
 	return (
@@ -53,7 +53,6 @@ function Category() {
 												<div className='courses-top-bar__column-btn'>
 													<i className='fas fa-align-left courses-top-bar__icon'></i>
 												</div>
-
 												<div className='courses-top-bar__selection'>
 													<span className='courses-top-bar__selection-title'>
 														مرتب سازی پیش فرض
@@ -81,7 +80,6 @@ function Category() {
 													</ul>
 												</div>
 											</div>
-
 											<div className='courses-top-bar__left'>
 												<form
 													action='#'

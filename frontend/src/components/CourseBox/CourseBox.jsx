@@ -26,7 +26,7 @@ function CourseBox(props) {
 				<Link to={`/course-info/${props.shortName}`}>
 					{!isImgShow && <CircleSpinner />}
 					<img
-						src={props.cover}
+						src={`/images/courses/${props.cover}`}
 						alt='Course img'
 						className='course-box__img'
 						onLoad={onImageLoaded}

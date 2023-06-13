@@ -18,13 +18,8 @@ function LastCourses() {
 	useEffect(() => {
 		fetch(`http://localhost:3000/v1/courses`)
 			.then((res) => res.json())
-			.then((allCourses) => {
-				console.log(allCourses);
-				setCourses(allCourses);
-			});
+			.then((allCourses) => setCourses(allCourses));
 	}, []);
-
-	console.log(courses);
 
 	// jsx
 	return (
