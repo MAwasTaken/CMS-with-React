@@ -17,6 +17,8 @@ function CourseBox(props) {
 
 	const onImageLoaded = () => setIsImgShow(true);
 
+  // console.log(props);
+
 	// jsx
 	return (
 		<div className='col-4'>
@@ -78,7 +80,7 @@ function CourseBox(props) {
 							<i className='fas fa-users course-box__users-icon'></i>
 							<span className='course-box__users-text'>500</span>
 						</div>
-						<span className='course-box__price'>{props.price === 0 ? 'رایگان' : props.price.toLocalString()}</span>
+						<span className='course-box__price'>{props.price === 0 ? 'رایگان' : props.price.toLocaleString()}</span>
 					</div>
 				</div>
 				<div className='course-box__footer'>

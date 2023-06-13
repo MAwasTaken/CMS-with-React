@@ -24,6 +24,8 @@ function LastCourses() {
 			});
 	}, []);
 
+	console.log(courses);
+
 	// jsx
 	return (
 		<div className='courses'>
@@ -37,9 +39,12 @@ function LastCourses() {
 				<div className='course-content'>
 					<div className='container'>
 						<div className='row'>
-							{/* {courses.splice(0, 6).map((course) => (
-								<CourseBox {...courses} />
-							))} */}
+							{courses.splice(0, 6).map((course, index) => (
+								<CourseBox
+									{...course}
+									key={index}
+								/>
+							))}
 						</div>
 					</div>
 				</div>
