@@ -11,18 +11,22 @@ import Navbar from '../../Components/Navbar/Navbar';
 import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb';
 import Footer from '../../Components/Footer/Footer';
 import CourseBox from '../../Components/CourseBox/CourseBox';
+import Pagination from '../../Components/Pagination/Pagination';
 
 // courses
 function Courses() {
-  // all courses
+	// all courses
 	const [allCourses, setCourses] = useState([]);
 
-  // get all courses
+	// get all courses
 	useEffect(() => {
 		fetch(`http://localhost:3000/v1/courses`)
 			.then((res) => res.json())
 			.then((allCourses) => setCourses(allCourses));
 	}, []);
+
+	// pagination shown courses
+	const [shownCourses, setShownCourse] = useState([]);
 
 	// jsx
 	return (
@@ -40,7 +44,7 @@ function Courses() {
 					<div className='courses-content'>
 						<div className='container'>
 							<div className='row'>
-								{allCourses.map((course, index) => (
+								{shownCourses.map((course, index) => (
 									<CourseBox
 										{...course}
 										key={index}
@@ -49,38 +53,12 @@ function Courses() {
 							</div>
 						</div>
 					</div>
-					<div class='courses-pagination'>
-						<ul class='courses__pagination-list'>
-							<li class='courses__pagination-item'>
-								<a
-									href='#'
-									class='courses__pagination-link'>
-									<i class='fas fa-long-arrow-alt-right courses__pagination-icon'></i>
-								</a>
-							</li>
-							<li class='courses__pagination-item'>
-								<a
-									href='#'
-									class='courses__pagination-link courses__pagination-link--active'>
-									1
-								</a>
-							</li>
-							<li class='courses__pagination-item'>
-								<a
-									href='#'
-									class='courses__pagination-link'>
-									2
-								</a>
-							</li>
-							<li class='courses__pagination-item'>
-								<a
-									href='#'
-									class='courses__pagination-link'>
-									3
-								</a>
-							</li>
-						</ul>
-					</div>
+					<Pagination
+						items={allCourses}
+						itemsCount={1}
+						pathName='/courses'
+						setShownCourses={setShownCourse}
+					/>
 				</div>
 			</section>
 			<Footer />
