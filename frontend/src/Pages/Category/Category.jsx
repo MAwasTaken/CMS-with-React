@@ -29,6 +29,9 @@ function Category() {
 			.then((allCourses) => setCourses(allCourses));
 	}, [categoryName]);
 
+	// paginated courses
+	const [shownCourses, setShownCourses] = useState([]);
+
 	// jsx
 	return (
 		<>
@@ -93,13 +96,18 @@ function Category() {
 												</form>
 											</div>
 										</div>
-										{courses.map((course, index) => (
+										{shownCourses.map((course, index) => (
 											<CourseBox
 												{...course}
 												key={index}
 											/>
 										))}
-										<Pagination />
+										<Pagination
+											items={courses}
+											itemsCount={3}
+											pathName={`/category-info/${categoryName}`}
+											setShownCourses={setShownCourses}
+										/>
 									</>
 								)}
 							</div>

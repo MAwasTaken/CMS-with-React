@@ -55,7 +55,7 @@ function Courses() {
 					</div>
 					<Pagination
 						items={allCourses}
-						itemsCount={1}
+						itemsCount={3}
 						pathName='/courses'
 						setShownCourses={setShownCourse}
 					/>

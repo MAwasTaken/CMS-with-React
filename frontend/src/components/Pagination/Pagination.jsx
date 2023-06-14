@@ -13,7 +13,7 @@ import './Pagination.css';
 function Pagination({ items, itemsCount, pathName, setShownCourses }) {
 	// page url parameters
 	const { page } = useParams();
-  
+
 	// page count state
 	const [pagesCount, setPagesCount] = useState(null);
 
@@ -46,16 +46,18 @@ function Pagination({ items, itemsCount, pathName, setShownCourses }) {
 				{Array(pagesCount)
 					.fill(null)
 					.map((item, index) => (
-						<li className='courses__pagination-item'>
+						<li
+							className='courses__pagination-item'
+							key={index}>
 							{index + 1 === Number(page) ? (
 								<Link
-									to={`/courses/${index + 1}`}
+									to={`${pathName}/${index + 1}`}
 									className='courses__pagination-link courses__pagination-link--active'>
 									{index + 1}
 								</Link>
 							) : (
 								<Link
-									to={`/courses/${index + 1}`}
+									to={`${pathName}/${index + 1}`}
 									className='courses__pagination-link'>
 									{index + 1}
 								</Link>
@@ -65,7 +67,7 @@ function Pagination({ items, itemsCount, pathName, setShownCourses }) {
 				{Number(page) === pagesCount ? null : (
 					<li className='courses__pagination-item'>
 						<Link
-							to={`/courses/${Number(page) + 1}`}
+							to={`${pathName}/${Number(page) + 1}`}
 							className='courses__pagination-link'>
 							<i className='fas fa-long-arrow-alt-left courses__pagination-icon'></i>
 						</Link>
