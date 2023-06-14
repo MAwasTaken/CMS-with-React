@@ -1,9 +1,9 @@
 // react
 import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 // styles
 import './Pagination.css';
-import { useParams } from 'react-router-dom';
 
 // packages
 
@@ -13,11 +13,11 @@ import { useParams } from 'react-router-dom';
 function Pagination({ items, itemsCount, pathName, setShownCourses }) {
 	// page url parameters
 	const { page } = useParams();
-
+  
 	// page count state
-	const [pageCount, setPageCount] = useState(null);
+	const [pagesCount, setPagesCount] = useState(null);
 
-  // pagination logic
+	// pagination logic
 	useEffect(() => {
 		let endIndex = itemsCount * page;
 		let startIndex = endIndex - itemsCount;
@@ -27,48 +27,50 @@ function Pagination({ items, itemsCount, pathName, setShownCourses }) {
 
 		let pagesNumber = Math.ceil(items.length / itemsCount);
 
-		setPageCount(pagesNumber);
+		setPagesCount(pagesNumber);
 	}, [page, items]);
 
 	// jsx
 	return (
 		<div className='courses-pagination'>
 			<ul className='courses__pagination-list'>
-				<li className='courses__pagination-item'>
-					<a
-						href='#'
-						className='courses__pagination-link'>
-						<i className='fas fa-long-arrow-alt-right courses__pagination-icon'></i>
-					</a>
-				</li>
-				<li className='courses__pagination-item'>
-					<a
-						href='#'
-						className='courses__pagination-link'>
-						1
-					</a>
-				</li>
-				<li className='courses__pagination-item'>
-					<a
-						href='#'
-						className='courses__pagination-link'>
-						2
-					</a>
-				</li>
-				<li className='courses__pagination-item'>
-					<a
-						href='#'
-						className='courses__pagination-link courses__pagination-link--active'>
-						3
-					</a>
-				</li>
-				<li className='courses__pagination-item'>
-					<a
-						href='#'
-						className='courses__pagination-link'>
-						<i className='fas fa-long-arrow-alt-left courses__pagination-icon'></i>
-					</a>
-				</li>
+				{Number(page) === 1 ? null : (
+					<li className='courses__pagination-item'>
+						<Link
+							to={`/courses/${Number(page) - 1}`}
+							className='courses__pagination-link'>
+							<i className='fas fa-long-arrow-alt-right courses__pagination-icon'></i>
+						</Link>
+					</li>
+				)}
+				{Array(pagesCount)
+					.fill(null)
+					.map((item, index) => (
+						<li className='courses__pagination-item'>
+							{index + 1 === Number(page) ? (
+								<Link
+									to={`/courses/${index + 1}`}
+									className='courses__pagination-link courses__pagination-link--active'>
+									{index + 1}
+								</Link>
+							) : (
+								<Link
+									to={`/courses/${index + 1}`}
+									className='courses__pagination-link'>
+									{index + 1}
+								</Link>
+							)}
+						</li>
+					))}
+				{Number(page) === pagesCount ? null : (
+					<li className='courses__pagination-item'>
+						<Link
+							to={`/courses/${Number(page) + 1}`}
+							className='courses__pagination-link'>
+							<i className='fas fa-long-arrow-alt-left courses__pagination-icon'></i>
+						</Link>
+					</li>
+				)}
 			</ul>
 		</div>
 	);
