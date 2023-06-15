@@ -23,10 +23,7 @@ function LastArticles() {
 			},
 		})
 			.then((res) => res.json())
-			.then((allArticles) => {
-				console.log(allArticles);
-				setArticles(allArticles);
-			});
+			.then((allArticles) => setArticles(allArticles));
 	}, []);
 
 	// jsx
@@ -43,12 +40,7 @@ function LastArticles() {
 					</div>
 					<div className='articles__content'>
 						<div className='row'>
-							<ArticleBox
-								title='نحوه نصب کتابخانه در پایتون | آموزش نصب کتابخانه پایتون'
-								description='زبان پایتون هم مانند دیگر زبان­های برنامه نویسی رایج، دارای کتابخانه های مختلفی برای تسریع...'
-								cover='images/blog/3.jpg'
-							/>
-							{articles.slice(0, 5).map((article, index) => (
+							{articles.slice(0, 6).map((article, index) => (
 								<ArticleBox
 									{...article}
 									key={index}

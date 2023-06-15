@@ -1,5 +1,6 @@
 // react
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 // styles
 import './ArticleInfo.css';
@@ -7,14 +8,40 @@ import './ArticleInfo.css';
 // packages
 
 // components
-import Topbar from '../../components/Topbar/Topbar';
-import Navbar from '../../components/Navbar/Navbar';
-import Footer from '../../components/Footer/Footer';
+import Topbar from '../../Components/Topbar/Topbar';
+import Navbar from '../../Components/Navbar/Navbar';
+import Footer from '../../Components/Footer/Footer';
 import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb';
 import CommentTextarea from '../../Components/CommentsTextarea/CommentTextarea';
 
 // article info
 function ArticleInfo() {
+	// url param
+	const { articleName } = useParams();
+	console.log(articleName);
+
+	// article infos
+	const [articleDetails, setArticleDetails] = useState({});
+	const [articleCategory, setArticleCategory] = useState({});
+	const [articleCreator, setArticleCreator] = useState({});
+	const [articleCreateDate, setArticleCreateDate] = useState('');
+
+	// get article infos
+	useEffect(() => {
+		fetch(`http://localhost:3000/v1/articles/${articleName}`, {
+			headers: {
+				Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+			},
+		})
+			.then((res) => res.json())
+			.then((articleInfo) => {
+				setArticleDetails(articleInfo);
+				setArticleCategory(articleInfo.categoryID);
+				setArticleCreator(articleInfo.creator);
+				setArticleCreateDate(articleInfo.createdAt);
+			});
+	}, []);
+
 	// jsx
 	return (
 		<>
@@ -32,29 +59,28 @@ function ArticleInfo() {
 					<div className='row'>
 						<div className='col-8'>
 							<div className='article'>
-								<h1 className='article__title'>
-									معرفی بهترین سایت آموزش جاوا اسکریپت [ تجربه محور ] + آموزش رایگان
-								</h1>
+								<h1 className='article__title'>{articleDetails.title}</h1>
 								<div className='article__header'>
 									<div className='article-header__category article-header__item'>
 										<i className='far fa-folder article-header__icon'></i>
 										<a
 											href='#'
 											className='article-header__text'>
-											جاوا اسکریپت
+											{articleCategory.title}
 										</a>
 									</div>
 									<div className='article-header__category article-header__item'>
 										<i className='far fa-user article-header__icon'></i>
-										<span className='article-header__text'> ارسال شده توسط قدیر</span>
-									</div>
-									<div className='article-header__category article-header__item'>
-										<i className='far fa-clock article-header__icon'></i>
-										<span className='article-header__text'> ارسال شده توسط قدیر</span>
+										<span className='article-header__text'>
+											{' '}
+											ارسال شده توسط {articleCreator.name}
+										</span>
 									</div>
 									<div className='article-header__category article-header__item'>
 										<i className='far fa-eye article-header__icon'></i>
-										<span className='article-header__text'> 2.14k بازدید</span>
+										<span className='article-header__text'>
+                      تاریخ انتشار:‌ {articleCreateDate.slice(0, 10)}
+										</span>
 									</div>
 								</div>
 								<img
@@ -134,7 +160,9 @@ function ArticleInfo() {
 									className='article__seconadary-banner'
 								/>
 								<div className='article-section'>
-									<h2 className='article-section__title'>معرفی بهترین سایت ‌های آموزش جاوا اسکریپت:</h2>
+									<h2 className='article-section__title'>
+										معرفی بهترین سایت ‌های آموزش جاوا اسکریپت:
+									</h2>
 									<p className='paragraph article-section__text'>
 										توجه داشته باشید که تمام وب سایت‌هایی که به عنوان بهترین سایت آموزش جاوا اسکریپت
 										در ادامه معرفی می‌کنیم، بین‌المللی هستند و منابع موجود در آن‌ها به زبان انگلیسی
@@ -151,7 +179,9 @@ function ArticleInfo() {
 									/>
 								</div>
 								<div className='article-section'>
-									<h2 className='article-section__title'>معرفی بهترین سایت ‌های آموزش جاوا اسکریپت:</h2>
+									<h2 className='article-section__title'>
+										معرفی بهترین سایت ‌های آموزش جاوا اسکریپت:
+									</h2>
 									<p className='paragraph article-section__text'>
 										توجه داشته باشید که تمام وب سایت‌هایی که به عنوان بهترین سایت آموزش جاوا اسکریپت
 										در ادامه معرفی می‌کنیم، بین‌المللی هستند و منابع موجود در آن‌ها به زبان انگلیسی
@@ -163,7 +193,9 @@ function ArticleInfo() {
 									</p>
 								</div>
 								<div className='article-section'>
-									<h2 className='article-section__title'>معرفی بهترین سایت ‌های آموزش جاوا اسکریپت:</h2>
+									<h2 className='article-section__title'>
+										معرفی بهترین سایت ‌های آموزش جاوا اسکریپت:
+									</h2>
 									<p className='paragraph article-section__text'>
 										توجه داشته باشید که تمام وب سایت‌هایی که به عنوان بهترین سایت آموزش جاوا اسکریپت
 										در ادامه معرفی می‌کنیم، بین‌المللی هستند و منابع موجود در آن‌ها به زبان انگلیسی
