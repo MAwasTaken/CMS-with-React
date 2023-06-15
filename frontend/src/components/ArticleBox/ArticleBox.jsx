@@ -1,5 +1,6 @@
 // react
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // styles
 import './ArticleBox.css';
@@ -10,7 +11,7 @@ import './ArticleBox.css';
 import CircleSpinner from '../CircleSpinner/CircleSpinner';
 
 // article box
-function ArticleBox({ title, description, cover }) {
+function ArticleBox({ title, description, cover, shortName }) {
 	// image loader
 	const [isImgShow, setIsImgShow] = useState(false);
 
@@ -21,8 +22,8 @@ function ArticleBox({ title, description, cover }) {
 		<div className='col-4'>
 			<div className='article-card'>
 				<div className='article-card__header'>
-					<a
-						href='#'
+					<Link
+						to={`/article-info/${shortName}`}
 						className='article-card__link-img'>
 						{!isImgShow && <CircleSpinner />}
 						<img
@@ -31,20 +32,20 @@ function ArticleBox({ title, description, cover }) {
 							alt='Article Cover'
 							onLoad={onImageLoaded}
 						/>
-					</a>
+					</Link>
 				</div>
 				<div className='article-card__content'>
-					<a
-						href='#'
+					<Link
+						to={`/article-info/${shortName}`}
 						className='article-card__link'>
 						{title}
-					</a>
+					</Link>
 					<p className='article-card__text'>{description}</p>
-					<a
-						href='#'
+					<Link
+						to={`/article-info/${shortName}`}
 						className='article-card__btn'>
 						بیشتر بخوانید
-					</a>
+					</Link>
 				</div>
 			</div>
 		</div>

@@ -231,7 +231,7 @@ function ArticleInfo() {
 									</div>
 								</div>
 							</div>
-							<CommentTextarea />
+							{/* <CommentTextarea /> */}
 						</div>
 					</div>
 				</div>
