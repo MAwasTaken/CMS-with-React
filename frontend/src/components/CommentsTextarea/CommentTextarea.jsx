@@ -37,9 +37,11 @@ function CommentTextarea({ comments, submitComment }) {
 					<div className='alert alert-warning'>هنوز کامنتی برای این دوره ثبت نشده</div>
 				) : (
 					<>
-						{comments.map((comment) => (
+						{comments.map((comment, index) => (
 							<>
-								<div className='comments__item'>
+								<div
+									className='comments__item'
+									key={index}>
 									<div className='comments__question'>
 										<div className='comments__question-header'>
 											<div className='comments__question-header-right'>
@@ -137,10 +139,9 @@ function CommentTextarea({ comments, submitComment }) {
 					<div className='comments__respond-content'>
 						<div className='comments__respond-title'>دیدگاه شما *</div>
 						<textarea
+							value={newCommentBody}
 							className='comments__score-input-respond'
-							onChange={onChangeHandler}>
-							{newCommentBody}
-						</textarea>
+							onChange={onChangeHandler}></textarea>
 					</div>
 					<button
 						onClick={() => submitComment(newCommentBody)}

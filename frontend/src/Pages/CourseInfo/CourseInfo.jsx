@@ -28,6 +28,7 @@ function CourseInfo() {
 	const [courseDetails, setCourseDetails] = useState({});
 	const [createdAt, setCreatedAt] = useState('');
 	const [updatedAt, setUpdatedAt] = useState('');
+	const [courseTeacher, setCourseTeacher] = useState({});
 
 	// get all course infos
 	useEffect(() => {
@@ -46,6 +47,7 @@ function CourseInfo() {
 				setCourseDetails(courseInfos);
 				setCreatedAt(courseInfos.createdAt);
 				setUpdatedAt(courseInfos.updatedAt);
+				setCourseTeacher(courseInfos.creator);
 			});
 	}, []);
 
@@ -255,7 +257,9 @@ function CourseInfo() {
 										eventKey='0'>
 										<Accordion.Header>جلسات دوره</Accordion.Header>
 										{sessions.map((session, index) => (
-											<Accordion.Body className='introduction__accordion-body'>
+											<Accordion.Body
+												className='introduction__accordion-body'
+												key={index}>
 												<div className='introduction__accordion-right'>
 													<span className='introduction__accordion-count'>{index + 1}</span>
 													<i className='fab fa-youtube introduction__accordion-icon'></i>
@@ -279,7 +283,7 @@ function CourseInfo() {
 								<div className='techer-details__header'>
 									<div className='techer-details__header-right'>
 										<img
-											src='/images/info/teacher.jfif'
+											src={courseTeacher.profile}
 											alt='Teacher Profile'
 											className='techer-details__header-img'
 										/>
@@ -287,7 +291,7 @@ function CourseInfo() {
 											<a
 												href='#'
 												className='techer-details__header-link'>
-												محمدامین سعیدی راد
+												{courseTeacher.name}
 											</a>
 											<span className='techer-details__header-skill'>
 												Front End & Back End Developer
