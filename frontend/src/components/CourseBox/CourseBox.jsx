@@ -15,9 +15,8 @@ function CourseBox(props) {
 	// image loader
 	const [isImgShow, setIsImgShow] = useState(false);
 
+  // image loaded
 	const onImageLoaded = () => setIsImgShow(true);
-
-	// console.log(props);
 
 	// jsx
 	return (

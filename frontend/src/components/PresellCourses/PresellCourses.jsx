@@ -1,5 +1,5 @@
 // react
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // styles
 import './PresellCourses.css';
@@ -22,10 +22,7 @@ function PresellCourses() {
 	useEffect(() => {
 		fetch(`http://localhost:3000/v1/courses/presell`)
 			.then((res) => res.json())
-			.then((allPreSellCourses) => {
-				console.log(allPreSellCourses);
-				setPresellCourse(allPreSellCourses);
-			});
+			.then((allPreSellCourses) => setPresellCourse(allPreSellCourses));
 	}, []);
 
 	// jsx
@@ -46,7 +43,7 @@ function PresellCourses() {
 									spaceBetween={30}
 									loop={true}
 									autoplay={{
-										delay: 2500,
+										delay: 3500,
 										disableOnInteraction: false,
 									}}
 									modules={[Autoplay]}
