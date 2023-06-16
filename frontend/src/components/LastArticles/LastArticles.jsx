@@ -36,6 +36,7 @@ function LastArticles() {
 							title='جدیدترین مقاله ها'
 							description='پیش به سوی ارتقای دانش'
 							btnTitle='تمامی مقاله ها'
+              btnHref='articles/1'
 						/>
 					</div>
 					<div className='articles__content'>

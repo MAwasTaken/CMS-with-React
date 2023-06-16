@@ -10,7 +10,7 @@ import './Pagination.css';
 // components
 
 // pagination
-function Pagination({ items, itemsCount, pathName, setShownCourses }) {
+function Pagination({ items, itemsCount, pathName, setShownItems }) {
 	// page url parameters
 	const { page } = useParams();
 
@@ -23,7 +23,7 @@ function Pagination({ items, itemsCount, pathName, setShownCourses }) {
 		let startIndex = endIndex - itemsCount;
 		let paginatedItems = items.slice(startIndex, endIndex);
 
-		setShownCourses(paginatedItems);
+		setShownItems(paginatedItems);
 
 		let pagesNumber = Math.ceil(items.length / itemsCount);
 
@@ -37,7 +37,7 @@ function Pagination({ items, itemsCount, pathName, setShownCourses }) {
 				{Number(page) === 1 ? null : (
 					<li className='courses__pagination-item'>
 						<Link
-							to={`/courses/${Number(page) - 1}`}
+							to={`${pathName}/${Number(page) - 1}`}
 							className='courses__pagination-link'>
 							<i className='fas fa-long-arrow-alt-right courses__pagination-icon'></i>
 						</Link>

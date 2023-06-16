@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 
 // styles
+import './Articles.css';
 
 // packages
 
@@ -10,24 +11,24 @@ import Topbar from '../../Components/Topbar/Topbar';
 import Navbar from '../../Components/Navbar/Navbar';
 import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb';
 import Footer from '../../Components/Footer/Footer';
-import CourseBox from '../../Components/CourseBox/CourseBox';
+import ArticleBox from '../../Components/ArticleBox/ArticleBox';
 import Pagination from '../../Components/Pagination/Pagination';
 
-// courses
-function Courses() {
-	// all courses
-	const [allCourses, setCourses] = useState([]);
+// articles
+function Articles() {
+	// all articles
+	const [articles, setArticles] = useState([]);
+	const [shownArticles, setShownArticles] = useState([]);
 
-	// get all courses
+	// get all articles
 	useEffect(() => {
-		fetch(`http://localhost:3000/v1/courses`)
+		fetch(`http://localhost:3000/v1/articles`)
 			.then((res) => res.json())
-			.then((allCourses) => setCourses(allCourses));
+			.then((allArticles) => {
+				console.log(allArticles);
+				setArticles(allArticles);
+			});
 	}, []);
-
-	// pagination shown courses
-	const [shownCourses, setShownCourse] = useState([]);
-
 	// jsx
 	return (
 		<>
@@ -36,7 +37,7 @@ function Courses() {
 			<BreadCrumb
 				links={[
 					{ id: 1, title: 'خانه', to: '/' },
-					{ id: 2, title: 'تمامی دوره ها', to: '/courses' },
+					{ id: 2, title: 'تمامی مقاله ها', to: '/articles' },
 				]}
 			/>
 			<section className='courses'>
@@ -44,9 +45,9 @@ function Courses() {
 					<div className='courses-content'>
 						<div className='container'>
 							<div className='row'>
-								{shownCourses.map((course, index) => (
-									<CourseBox
-										{...course}
+								{shownArticles.map((article, index) => (
+									<ArticleBox
+										{...article}
 										key={index}
 									/>
 								))}
@@ -54,10 +55,10 @@ function Courses() {
 						</div>
 					</div>
 					<Pagination
-						items={allCourses}
+						items={articles}
 						itemsCount={3}
-						pathName='/courses'
-						setShownItems={setShownCourse}
+						pathName='/articles'
+						setShownItems={setShownArticles}
 					/>
 				</div>
 			</section>
@@ -67,4 +68,4 @@ function Courses() {
 }
 
 // exports
-export default Courses;
+export default Articles;

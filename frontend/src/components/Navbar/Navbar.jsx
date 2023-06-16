@@ -90,7 +90,7 @@ function Navbar() {
 						</a>
 						{authContext.isLoggedIn ? (
 							<Link
-								href='#'
+								to='/'
 								className='main-header__profile'>
 								<span className='main-header__profile-text'>
 									{authContext.userInfos.name ? authContext.userInfos.name : 'پنل کاربری'}
