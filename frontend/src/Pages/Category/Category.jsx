@@ -75,6 +75,20 @@ function Category() {
 		}
 	}, [status]);
 
+	// course search value
+	const [searchValue, setSearchValue] = useState('');
+
+	// course search handler
+	const searchValueChangeHandler = (event) => {
+		setSearchValue(event.target.value);
+
+		const filteredCourses = courses.filter((course) => course.name.includes(event.target.value));
+
+		console.log(filteredCourses);
+
+		setOrderedCourses(filteredCourses);
+	};
+
 	// jsx
 	return (
 		<>
@@ -156,6 +170,8 @@ function Category() {
 														type='text'
 														className='courses-top-bar__input'
 														placeholder='جستجوی دوره ...'
+														value={searchValue}
+														onChange={searchValueChangeHandler}
 													/>
 													<i className='fas fa-search courses-top-bar__search-icon'></i>
 												</form>
