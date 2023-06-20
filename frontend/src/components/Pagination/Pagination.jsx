@@ -33,47 +33,49 @@ function Pagination({ items, itemsCount, pathName, setShownItems }) {
 	// jsx
 	return (
 		<div className='courses-pagination'>
-			<ul className='courses__pagination-list'>
-				{Number(page) === 1 ? null : (
-					<li className='courses__pagination-item'>
-						<Link
-							to={`${pathName}/${Number(page) - 1}`}
-							className='courses__pagination-link'>
-							<i className='fas fa-long-arrow-alt-right courses__pagination-icon'></i>
-						</Link>
-					</li>
-				)}
-				{Array(pagesCount)
-					.fill(null)
-					.map((item, index) => (
-						<li
-							className='courses__pagination-item'
-							key={index}>
-							{index + 1 === Number(page) ? (
-								<Link
-									to={`${pathName}/${index + 1}`}
-									className='courses__pagination-link courses__pagination-link--active'>
-									{index + 1}
-								</Link>
-							) : (
-								<Link
-									to={`${pathName}/${index + 1}`}
-									className='courses__pagination-link'>
-									{index + 1}
-								</Link>
-							)}
+			{items.length ? (
+				<ul className='courses__pagination-list'>
+					{Number(page) === 1 ? null : (
+						<li className='courses__pagination-item'>
+							<Link
+								to={`${pathName}/${Number(page) - 1}`}
+								className='courses__pagination-link'>
+								<i className='fas fa-long-arrow-alt-right courses__pagination-icon'></i>
+							</Link>
 						</li>
-					))}
-				{Number(page) === pagesCount ? null : (
-					<li className='courses__pagination-item'>
-						<Link
-							to={`${pathName}/${Number(page) + 1}`}
-							className='courses__pagination-link'>
-							<i className='fas fa-long-arrow-alt-left courses__pagination-icon'></i>
-						</Link>
-					</li>
-				)}
-			</ul>
+					)}
+					{Array(pagesCount)
+						.fill(null)
+						.map((item, index) => (
+							<li
+								className='courses__pagination-item'
+								key={index}>
+								{index + 1 === Number(page) ? (
+									<Link
+										to={`${pathName}/${index + 1}`}
+										className='courses__pagination-link courses__pagination-link--active'>
+										{index + 1}
+									</Link>
+								) : (
+									<Link
+										to={`${pathName}/${index + 1}`}
+										className='courses__pagination-link'>
+										{index + 1}
+									</Link>
+								)}
+							</li>
+						))}
+					{Number(page) === pagesCount ? null : (
+						<li className='courses__pagination-item'>
+							<Link
+								to={`${pathName}/${Number(page) + 1}`}
+								className='courses__pagination-link'>
+								<i className='fas fa-long-arrow-alt-left courses__pagination-icon'></i>
+							</Link>
+						</li>
+					)}
+				</ul>
+			) : null}
 		</div>
 	);
 }

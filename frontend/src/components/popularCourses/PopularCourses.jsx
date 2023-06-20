@@ -22,10 +22,7 @@ function PopularCourses() {
 	useEffect(() => {
 		fetch(`http://localhost:3000/v1/courses/presell`)
 			.then((res) => res.json())
-			.then((allPopularCourses) => {
-				console.log(allPopularCourses);
-				setPopularCourses(allPopularCourses);
-			});
+			.then((allPopularCourses) => setPopularCourses(allPopularCourses));
 	}, []);
 
 	// jsx

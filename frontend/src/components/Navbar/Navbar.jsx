@@ -51,7 +51,7 @@ function Navbar() {
 									className='main-header__item'
 									key={index}>
 									<Link
-										to={`/category-info/${menu.href}`}
+										to={`/category-info/${menu.href}/1`}
 										className='main-header__link'>
 										{menu.title}
 										{menu.submenus.length !== 0 && (

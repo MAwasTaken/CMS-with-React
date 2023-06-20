@@ -26,11 +26,54 @@ function Category() {
 	useEffect(() => {
 		fetch(`http://localhost:3000/v1/courses/category/${categoryName}`)
 			.then((res) => res.json())
-			.then((allCourses) => setCourses(allCourses));
+			.then((allCourses) => {
+				setCourses(allCourses);
+				setOrderedCourses(allCourses);
+			});
 	}, [categoryName]);
 
 	// paginated courses
 	const [shownCourses, setShownCourses] = useState([]);
+
+	// sort status
+	const [status, setStatus] = useState('default');
+
+	// sort status title
+	const [statusTitle, setStatusTitle] = useState('مرتب سازی پیش فرض');
+
+	// ordered courses
+	const [orderedCourses, setOrderedCourses] = useState([]);
+
+	useEffect(() => {
+		switch (status) {
+			case 'free': {
+				const freeCourses = courses.filter((course) => course.price === 0);
+
+				setOrderedCourses(freeCourses);
+
+				break;
+			}
+			case 'paid': {
+				const paidCourses = courses.filter((course) => course.price !== 0);
+
+				setOrderedCourses(paidCourses);
+
+				break;
+			}
+			case 'last': {
+				setOrderedCourses(courses);
+
+				break;
+			}
+			case 'first': {
+				setOrderedCourses([...courses].reverse());
+
+				break;
+			}
+			default:
+				setOrderedCourses(courses);
+		}
+	}, [status]);
 
 	// jsx
 	return (
@@ -58,27 +101,49 @@ function Category() {
 												</div>
 												<div className='courses-top-bar__selection'>
 													<span className='courses-top-bar__selection-title'>
-														مرتب سازی پیش فرض
+														{statusTitle}
 														<i className='fas fa-angle-down courses-top-bar__selection-icon'></i>
 													</span>
 													<ul className='courses-top-bar__selection-list'>
-														<li className='courses-top-bar__selection-item courses-top-bar__selection-item--active'>
+														<li
+															className='courses-top-bar__selection-item courses-top-bar__selection-item--active'
+															onClick={() => {
+																setStatus('default');
+																setStatusTitle('مرتب سازی پیش فرض');
+															}}>
 															مرتب سازی پیش فرض
 														</li>
-														<li className='courses-top-bar__selection-item'>
-															مرتبت سازی بر اساس محبوبیت
+														<li
+															className='courses-top-bar__selection-item'
+															onClick={() => {
+																setStatus('free');
+																setStatusTitle('مرتب سازی بر اساس دوره های رایگان');
+															}}>
+															مرتب سازی بر اساس دوره های رایگان
 														</li>
-														<li className='courses-top-bar__selection-item'>
-															مرتبت سازی بر اساس امتیاز
+														<li
+															className='courses-top-bar__selection-item'
+															onClick={() => {
+																setStatus('paid');
+																setStatusTitle('مرتب سازی بر اساس دوره های غیر رایگان');
+															}}>
+															مرتب سازی بر اساس دوره های غیر رایگان
 														</li>
-														<li className='courses-top-bar__selection-item'>
-															مرتبت سازی بر اساس آخرین
+														<li
+															className='courses-top-bar__selection-item'
+															onClick={() => {
+																setStatus('last');
+																setStatusTitle('مرتب سازی بر اساس آخرین');
+															}}>
+															مرتب سازی بر اساس آخرین
 														</li>
-														<li className='courses-top-bar__selection-item'>
-															مرتبت سازی بر اساس ارزان ترین
-														</li>
-														<li className='courses-top-bar__selection-item'>
-															مرتبت سازی بر اساس گران ترین
+														<li
+															className='courses-top-bar__selection-item'
+															onClick={() => {
+																setStatus('first');
+																setStatusTitle('مرتب سازی بر اساس اولین');
+															}}>
+															مرتب سازی بر اساس اولین
 														</li>
 													</ul>
 												</div>
@@ -103,10 +168,10 @@ function Category() {
 											/>
 										))}
 										<Pagination
-											items={courses}
+											items={orderedCourses}
 											itemsCount={3}
 											pathName={`/category-info/${categoryName}`}
-											setShownCourses={setShownCourses}
+											setShownItems={setShownCourses}
 										/>
 									</>
 								)}
