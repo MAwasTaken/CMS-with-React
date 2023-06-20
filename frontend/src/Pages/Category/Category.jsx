@@ -161,12 +161,22 @@ function Category() {
 												</form>
 											</div>
 										</div>
-										{shownCourses.map((course, index) => (
-											<CourseBox
-												{...course}
-												key={index}
-											/>
-										))}
+										{shownCourses.length === 0 ? (
+											<div className='alert alert-warning'>
+												هیچ دوره ای برای
+												{` ${statusTitle} `}
+												وجود ندارد!
+											</div>
+										) : (
+											<>
+												{shownCourses.map((course, index) => (
+													<CourseBox
+														{...course}
+														key={index}
+													/>
+												))}
+											</>
+										)}
 										<Pagination
 											items={orderedCourses}
 											itemsCount={3}
