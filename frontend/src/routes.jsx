@@ -7,6 +7,7 @@ import Courses from './Pages/Courses/Courses';
 import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
 import Articles from './Pages/Articles/Articles';
+import Contact from './Pages/Contact/Contact';
 
 // routes
 const routes = [
@@ -18,6 +19,7 @@ const routes = [
 	{ path: '/login', element: <Login /> },
 	{ path: '/register', element: <Register /> },
 	{ path: '/articles/:page', element: <Articles /> },
+	{ path: '/contact', element: <Contact /> },
 ];
 
 // exports
