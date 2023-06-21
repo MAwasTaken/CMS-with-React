@@ -24,13 +24,13 @@ function App() {
 	const [userInfos, setUserInfos] = useState(false);
 
 	// login
-	const login = useCallback((userInfos, token) => {
+	const login = (userInfos, token) => {
 		setToken(token);
 		setIsLoggedIn(true);
 		setUserInfos(userInfos);
 
 		localStorage.setItem('user', JSON.stringify({ token }));
-	}, []);
+	};
 
 	// logout
 	const logout = useCallback(() => {

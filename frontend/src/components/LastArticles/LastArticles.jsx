@@ -17,11 +17,7 @@ function LastArticles() {
 
 	// get last articles
 	useEffect(() => {
-		fetch(`http://localhost:3000/v1/articles`, {
-			headers: {
-				Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
-			},
-		})
+		fetch(`http://localhost:3000/v1/articles`)
 			.then((res) => res.json())
 			.then((allArticles) => setArticles(allArticles));
 	}, []);
@@ -36,7 +32,7 @@ function LastArticles() {
 							title='جدیدترین مقاله ها'
 							description='پیش به سوی ارتقای دانش'
 							btnTitle='تمامی مقاله ها'
-              btnHref='articles/1'
+							btnHref='articles/1'
 						/>
 					</div>
 					<div className='articles__content'>

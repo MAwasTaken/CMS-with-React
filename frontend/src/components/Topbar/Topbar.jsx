@@ -1,5 +1,5 @@
 // react
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { Link } from 'react-router-dom';
 
 // styles
@@ -10,7 +10,7 @@ import './Topbar.css';
 // components
 
 // top bar
-function Topbar() {
+const Topbar = memo(function Topbar() {
 	// top bar menus
 	const [allTopBarLinks, setAllTopBarLinks] = useState([]);
 
@@ -69,7 +69,7 @@ function Topbar() {
 			</div>
 		</div>
 	);
-}
+});
 
 // exports
 export default Topbar;

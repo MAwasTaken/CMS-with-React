@@ -1,6 +1,6 @@
 // react
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // styles
 import './Login.css';
@@ -27,6 +27,9 @@ import AuthContext from '../../context/authContext';
 function Login() {
 	// authorization context
 	const authContext = useContext(AuthContext);
+
+	// navigator
+	const navigate = useNavigate();
 
 	// form validation
 	const [formState, onInputHandler] = useForm(
@@ -74,9 +77,7 @@ function Login() {
 					title: 'با موفقیت وارد شدید',
 					icon: 'success',
 					buttons: 'ورود به پنل کاربری',
-				}).then((value) => {
-					location.href = '/';
-				});
+				}).then((value) => navigate('/'));
 			})
 			.catch((err) => {
 				console.log(`err => ${err}`);
@@ -144,7 +145,6 @@ function Login() {
 								onChange={onChangeHandler}
 							/>
 						</div>
-						,
 						<Button
 							className={`login-form__btn ${
 								formState.isFormValid && isGoogleReCaptchaVerify
