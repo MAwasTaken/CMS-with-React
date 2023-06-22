@@ -173,21 +173,21 @@
 }
 
 .login-form__btn-success {
-  background-color: #2bce56;
+	background-color: #2bce56;
 }
 
 .login-form__btn-error {
-  background-color: #a8aaaf;
+	background-color: #a8aaaf;
 }
 
 .swal-footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .recaptcha-parent {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
+	margin-top: 2rem;
+	display: flex;
+	justify-content: center;
 }

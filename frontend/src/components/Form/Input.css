@@ -1,7 +1,7 @@
 .success {
-	box-shadow: 0 0 5px var(--primary-color);
+	box-shadow: 0 0 5px var(--primary-color) !important;
 }
 
 .error {
-	box-shadow: 0 0 5px red;
+	box-shadow: 0 0 5px red !important;
 }

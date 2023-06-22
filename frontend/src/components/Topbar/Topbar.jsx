@@ -49,11 +49,11 @@ const Topbar = memo(function Topbar() {
 					</div>
 					<div className='top-bar__left'>
 						<div className='top-bar__email'>
-							<a
-								href='#'
+							<Link
+								to='/contact'
 								className='top-bar__email-text top-bar__link'>
 								sabzlearn@gmail.com
-							</a>
+							</Link>
 							<i className='fas fa-envelope top-bar__email-icon'></i>
 						</div>
 						<div className='top-bar__phone'>

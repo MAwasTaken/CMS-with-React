@@ -141,3 +141,11 @@
 	color: #6c757d;
 	font-size: 1.4rem;
 }
+
+.login-form__text-input--success {
+	box-shadow: 0 0 5px var(--primary-color) !important;
+}
+
+.login-form__text-input--error {
+	box-shadow: 0 0 5px red !important;
+}
