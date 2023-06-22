@@ -5,13 +5,12 @@ import React from 'react';
 import './Contact.css';
 
 // packages
-import swal, { Swal } from 'sweetalert';
+import swal from 'sweetalert';
 
 // components
 import Topbar from '../../Components/Topbar/Topbar';
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
-import { useForm } from '../../hooks/useForms';
 import Button from '../../components/Form/Button';
 import Input from '../../components/Form/Input';
 import {
@@ -21,6 +20,9 @@ import {
 	emailValidator,
 } from '../../validators/rules';
 import { useNavigate } from 'react-router-dom';
+
+// hooks
+import { useForm } from '../../hooks/useForms';
 
 // contact
 function Contact() {

@@ -7,11 +7,55 @@ import './Footer.css';
 import FooterItem from '../FooterItem/FooterItem';
 
 // packages
+import swal from 'sweetalert';
 
 // components
+import Input from '../../components/Form/Input';
+import { emailValidator } from '../../validators/rules';
+
+// hooks
+import { useForm } from '../../hooks/useForms';
 
 // footer
 function Footer() {
+	// form validation
+	const [formState, onInputHandler] = useForm(
+		{
+			username: {
+				value: '',
+				isValid: false,
+			},
+			password: {
+				value: '',
+				isValid: false,
+			},
+		},
+		false
+	);
+
+	// add email handled
+	const addNewEmail = (event) => {
+		event.preventDefault();
+
+		const newEmail = {
+			email: formState.inputs.value,
+		};
+
+		fetch(`http://localhost:3000/v1/newsletters`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(newEmail),
+		}).then((res) => {
+			if (!res.ok)
+				swal({
+					title: 'ایمیل شما با موفقیت ثبت شد',
+					icon: 'success',
+					buttons: 'باشه',
+				});
+		});
+	};
 	// jsx
 	return (
 		<footer className='footer'>
@@ -113,6 +157,33 @@ function Footer() {
 										ارتباط با ما
 									</Link>
 								</div>
+							</div>
+							<div class='col-12'>
+								<span class='footer-widgets__title'>اشتراک در خبرنامه</span>
+								<span class='footer-widgets__text text-center d-block'>
+									جهت اطلاع از آخرین اخبار و تخفیف های سایت مشترک شوید!
+								</span>
+								<form
+									action='#'
+									class='footer-widgets__form'>
+									<div style={{ width: '100%' }}>
+										<Input
+											element='input'
+											id='email'
+											type='text'
+											className='footer-widgets__input'
+											placeholder='ایمیل خود را وارد کنید.'
+											onInputHandler={onInputHandler}
+											validations={[emailValidator()]}
+										/>
+									</div>
+									<button
+										type='submit'
+										class='footer-widgets__btn'
+										onClick={addNewEmail}>
+										عضویت
+									</button>
+								</form>
 							</div>
 						</FooterItem>
 					</div>
