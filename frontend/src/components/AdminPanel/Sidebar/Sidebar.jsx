@@ -1,8 +1,8 @@
 // react
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // styles
-import './Sidebar.css';
 
 // packages
 
@@ -14,56 +14,46 @@ function Sidebar() {
 	return (
 		<div
 			id='sidebar'
-			class='col-2'>
-			<div class='sidebar-header'>
-				<div class='sidebar-logo'>
-					<a href='#'>
+			className='col-2'>
+			<div className='sidebar-header'>
+				<div className='sidebar-logo'>
+					<Link to='/'>
 						<img
 							src='/images/logo/Logo.png'
 							alt='Logo'
 						/>
-					</a>
+					</Link>
 				</div>
-				<div class='sidebar-menu-btn'>
-					<i class='fas fa-bars'></i>
+				<div className='sidebar-menu-btn'>
+					<i className='fas fa-bars'></i>
 				</div>
 			</div>
-			<div class='sidebar-menu'>
+			<div className='sidebar-menu'>
 				<ul>
-					<li class='active-menu'>
-						<a href='#'>
+					<li className='active-menu'>
+						<Link to='/p-admin'>
 							<span>صفحه اصلی</span>
-						</a>
+						</Link>
 					</li>
 					<li>
-						<a href='#'>
+						<Link to='courses'>
 							<span>دوره ها</span>
-						</a>
+						</Link>
 					</li>
 					<li>
-						<a href='#'>
+						<Link to='menus'>
 							<span>منو ها</span>
-						</a>
+						</Link>
 					</li>
 					<li>
-						<a href='#'>
+						<Link to='articles'>
 							<span>مقاله ها</span>
-						</a>
+						</Link>
 					</li>
 					<li>
-						<a href='#'>
+						<Link to='users'>
 							<span>کاربران</span>
-						</a>
-					</li>
-					<li>
-						<a href='#'>
-							<span>کدهای تخفیف</span>
-						</a>
-					</li>
-					<li>
-						<a href='#'>
-							<span>دسته‌بندی‌ها</span>
-						</a>
+						</Link>
 					</li>
 				</ul>
 			</div>
