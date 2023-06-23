@@ -1,5 +1,5 @@
 // react
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 // styles
 
@@ -9,6 +9,24 @@ import React from 'react';
 
 // admin panel top bar
 function Topbar() {
+	// admin infos
+	const [adminInfo, setAdminInfo] = useState({});
+
+	// get admin infos
+	useEffect(() => {
+		const localStorageData = JSON.parse(localStorage.getItem('user'));
+
+		fetch(`http://localhost:3000/v1/auth/me`, {
+			headers: {
+				Authorization: `Bearer ${localStorageData.token}`,
+			},
+		})
+			.then((res) => res.json())
+			.then((data) => setAdminInfo(data));
+	}, []);
+
+  console.log(adminInfo);
+
 	// jsx
 	return (
 		<div className='container-fluid'>
@@ -77,13 +95,13 @@ function Topbar() {
 							<div className='home-profile-image'>
 								<a href='#'>
 									<img
-										src='/images/profile.png'
+										src={adminInfo.profile}
 										alt=''
 									/>
 								</a>
 							</div>
 							<div className='home-profile-name'>
-								<a href='#'>محمدامین سعیدی راد</a>
+								<a href='#'>{adminInfo.name}</a>
 							</div>
 							<div className='home-profile-icon'>
 								<i className='fas fa-angle-down'></i>
