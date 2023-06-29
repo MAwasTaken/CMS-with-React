@@ -25,16 +25,29 @@ function Topbar() {
 		})
 			.then((res) => res.json())
 			.then((data) => {
+				console.log(data);
 				setAdminInfo(data);
 				setAdminNotifications(data.notifications);
 			});
 	}, []);
 
+	// see notification
+	function seenNotification(NotificationId) {
+		const localStorageData = JSON.parse(localStorage.getItem('user'));
+
+		fetch(`http://localhost:3000/v1/notifications/${NotificationId}`, {
+			method: 'PUT',
+			headers: {
+				Authorization: `Bearer ${localStorageData.token}`,
+			},
+		});
+	}
+
 	// jsx
 	return (
 		<div className='container-fluid'>
 			<div className='container'>
-				<div className={`home-header ${isShowNotificationBox && 'active-modal-notification'}`}>
+				<div className={`home-header ${isShowNotificationBox && 'active-modal-notfication'}`}>
 					<div className='home-right'>
 						<div className='home-searchbar'>
 							<input
@@ -43,7 +56,9 @@ function Topbar() {
 								placeholder='جستجو...'
 							/>
 						</div>
-						<div className='home-notification'>
+						<div
+							className='home-notification'
+							onMouseEnter={() => setIsShowNotificationBox(true)}>
 							<button type='button'>
 								<i className='far fa-bell'></i>
 							</button>
@@ -53,14 +68,16 @@ function Topbar() {
 							onMouseEnter={() => setIsShowNotificationBox(true)}
 							onMouseLeave={() => setIsShowNotificationBox(false)}>
 							<ul className='home-notification-modal-list'>
-								{/* {adminNotifications.map((notification) => (
-									<li className='home-notification-modal-item'>
-										<span className='home-notification-modal-text'>{notification}</span>
+								{adminNotifications.map((notification, index) => (
+									<li
+										className='home-notification-modal-item'
+										key={index}>
+										<span className='home-notification-modal-text'>{notification.msg}</span>
 										<label className='switch'>
-											<a href='javascript:void(0)'>دیدم</a>
+											<span onClick={() => seenNotification(notification._id)}>دیدم</span>
 										</label>
 									</li>
-								))} */}
+								))}
 							</ul>
 						</div>
 					</div>
