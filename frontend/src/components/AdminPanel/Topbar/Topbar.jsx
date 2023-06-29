@@ -11,6 +11,8 @@ import React, { useEffect, useState } from 'react';
 function Topbar() {
 	// admin infos
 	const [adminInfo, setAdminInfo] = useState({});
+	const [adminNotifications, setAdminNotifications] = useState([]);
+	const [isShowNotificationBox, setIsShowNotificationBox] = useState(false);
 
 	// get admin infos
 	useEffect(() => {
@@ -22,16 +24,17 @@ function Topbar() {
 			},
 		})
 			.then((res) => res.json())
-			.then((data) => setAdminInfo(data));
+			.then((data) => {
+				setAdminInfo(data);
+				setAdminNotifications(data.notifications);
+			});
 	}, []);
-
-  console.log(adminInfo);
 
 	// jsx
 	return (
 		<div className='container-fluid'>
 			<div className='container'>
-				<div className='home-header'>
+				<div className={`home-header ${isShowNotificationBox && 'active-modal-notification'}`}>
 					<div className='home-right'>
 						<div className='home-searchbar'>
 							<input
@@ -45,48 +48,19 @@ function Topbar() {
 								<i className='far fa-bell'></i>
 							</button>
 						</div>
-						<div className='home-notification-modal'>
+						<div
+							className='home-notification-modal'
+							onMouseEnter={() => setIsShowNotificationBox(true)}
+							onMouseLeave={() => setIsShowNotificationBox(false)}>
 							<ul className='home-notification-modal-list'>
-								<li className='home-notification-modal-item'>
-									<span className='home-notification-modal-text'>پیغام ها</span>
-									<label className='switch'>
-										<input
-											type='checkbox'
-											checked
-										/>
-										<span className='slider round'></span>
-									</label>
-								</li>
-								<li className='home-notification-modal-item'>
-									<span className='home-notification-modal-text'>پیغام ها</span>
-									<label className='switch'>
-										<input
-											type='checkbox'
-											checked
-										/>
-										<span className='slider round'></span>
-									</label>
-								</li>
-								<li className='home-notification-modal-item'>
-									<span className='home-notification-modal-text'>پیغام ها</span>
-									<label className='switch'>
-										<input
-											type='checkbox'
-											checked
-										/>
-										<span className='slider round'></span>
-									</label>
-								</li>
-								<li className='home-notification-modal-item'>
-									<span className='home-notification-modal-text'>پیغام ها</span>
-									<label className='switch'>
-										<input
-											type='checkbox'
-											checked
-										/>
-										<span className='slider round'></span>
-									</label>
-								</li>
+								{/* {adminNotifications.map((notification) => (
+									<li className='home-notification-modal-item'>
+										<span className='home-notification-modal-text'>{notification}</span>
+										<label className='switch'>
+											<a href='javascript:void(0)'>دیدم</a>
+										</label>
+									</li>
+								))} */}
 							</ul>
 						</div>
 					</div>
