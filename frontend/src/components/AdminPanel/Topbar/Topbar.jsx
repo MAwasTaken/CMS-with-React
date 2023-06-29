@@ -68,16 +68,22 @@ function Topbar() {
 							onMouseEnter={() => setIsShowNotificationBox(true)}
 							onMouseLeave={() => setIsShowNotificationBox(false)}>
 							<ul className='home-notification-modal-list'>
-								{adminNotifications.map((notification, index) => (
-									<li
-										className='home-notification-modal-item'
-										key={index}>
-										<span className='home-notification-modal-text'>{notification.msg}</span>
-										<label className='switch'>
-											<span onClick={() => seenNotification(notification._id)}>دیدم</span>
-										</label>
+								{adminNotifications.length === 0 ? (
+									<li className='home-notification-modal-item'>
+										نوتیفیکیشنی برای نمایش وجود ندارد!
 									</li>
-								))}
+								) : (
+									adminNotifications.map((notification, index) => (
+										<li
+											className='home-notification-modal-item'
+											key={index}>
+											<span className='home-notification-modal-text'>{notification.msg}</span>
+											<label className='switch'>
+												<span onClick={() => seenNotification(notification._id)}>دیدم</span>
+											</label>
+										</li>
+									))
+								)}
 							</ul>
 						</div>
 					</div>
