@@ -3,7 +3,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 
 // styles
-import "./Index.css";
+import './Index.css';
 
 // packages
 
@@ -20,11 +20,15 @@ function index() {
 				<Sidebar />
 				<div
 					id='home'
-					className='col-10'>
+					class='col-10'>
 					<Topbar />
+					<div
+						class='container-fluid'
+						id='home-content'>
+						<Outlet />
+					</div>
 				</div>
 			</div>
-			<Outlet />
 		</>
 	);
 }
