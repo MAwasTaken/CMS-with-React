@@ -1,15 +1,40 @@
 // react
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 // styles
 
 // packages
+import swal from 'sweetalert';
 
 // components
 
+// contexts
+import AuthContext from '../../../context/authContext';
+
 // sidebar
 function Sidebar() {
+	// authorization
+	const authContext = useContext(AuthContext);
+
+	// navigator
+	const navigate = useNavigate();
+
+	// admin logout
+	const logoutAdmin = (event) => {
+		event.preventDefault();
+		console.log('lol');
+
+		swal({
+			title: 'با موفقیت لاگ‌آوت شدید!',
+			icon: 'success',
+			buttons: 'اوکی',
+		}).then(() => {
+			authContext.logout();
+			navigate('/');
+		});
+	};
+
 	// jsx
 	return (
 		<div
@@ -54,6 +79,13 @@ function Sidebar() {
 						<Link to='users'>
 							<span>کاربران</span>
 						</Link>
+					</li>
+					<li>
+						<a
+							href='#'
+							onClick={logoutAdmin}>
+							<span>خروج</span>
+						</a>
 					</li>
 				</ul>
 			</div>

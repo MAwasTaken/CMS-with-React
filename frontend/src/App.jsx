@@ -52,8 +52,8 @@ function App() {
 					setIsLoggedIn(true);
 					setUserInfos(userData);
 				});
-		}
-	}, [login]);
+		} else setIsLoggedIn(false);
+	}, [login, logout]);
 
 	// jsx
 	return (
