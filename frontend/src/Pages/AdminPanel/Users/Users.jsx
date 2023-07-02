@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react';
 
 // components
 import DataTable from '../../../components/AdminPanel/DataTable/DataTable';
+import swal from 'sweetalert';
 
 // admin panel - users
 function Users() {
@@ -14,7 +15,7 @@ function Users() {
 	const [users, setUsers] = useState([]);
 
 	// get all users
-	useEffect(() => {
+	function getAllUsers() {
 		const localStorageData = JSON.parse(localStorage.getItem('user'));
 
 		fetch(`http://localhost:3000/v1/users`, {
@@ -27,13 +28,43 @@ function Users() {
 				console.log(allUsers);
 				setUsers(allUsers);
 			});
+	}
+
+	// get all users when mounting
+	useEffect(() => {
+		getAllUsers();
 	}, []);
+
+	// remove user
+	const removeUser = (userID) => {
+		swal({
+			title: 'آیا از حذف مطمیئنی ؟',
+			icon: 'warning',
+			buttons: ['نه', 'آره'],
+		}).then((res) => {
+			if (res)
+				fetch(`http://localhost:3000/v1/users/${userID}`, {
+					method: 'DELETE',
+					headers: {
+						Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+					},
+				}).then((res) => {
+					if (res.ok) {
+						swal({
+							title: 'کاربر با موفقیت حذف شد!',
+							icon: 'success',
+							button: 'باشه',
+						}).then(() => getAllUsers());
+					}
+				});
+		});
+	};
 
 	// jsx
 	return (
 		<>
 			<DataTable title='کاربران'>
-				<table class='table'>
+				<table className='table'>
 					<thead>
 						<tr>
 							<th>شناسه</th>
@@ -46,28 +77,29 @@ function Users() {
 					</thead>
 					<tbody>
 						{users.map((user, index) => (
-							<tr>
+							<tr key={index}>
 								<td>{index + 1}</td>
 								<td>{user.name}</td>
 								<td>{user.email}</td>
 								<td>
 									<button
 										type='button'
-										class='btn btn-primary edit-btn'>
+										className='btn btn-primary edit-btn'>
 										ویرایش
 									</button>
 								</td>
 								<td>
 									<button
+										onClick={() => removeUser(user._id)}
 										type='button'
-										class='btn btn-warning delete-btn'>
+										className='btn btn-warning delete-btn'>
 										حذف
 									</button>
 								</td>
 								<td>
 									<button
 										type='button'
-										class='btn btn-danger delete-btn'>
+										className='btn btn-danger delete-btn'>
 										بن
 									</button>
 								</td>

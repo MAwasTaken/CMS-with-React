@@ -20,10 +20,10 @@ function index() {
 				<Sidebar />
 				<div
 					id='home'
-					class='col-10'>
+					className='col-10'>
 					<Topbar />
 					<div
-						class='container-fluid'
+						className='container-fluid'
 						id='home-content'>
 						<Outlet />
 					</div>
