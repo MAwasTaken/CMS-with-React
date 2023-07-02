@@ -9,7 +9,7 @@ import './Register.css';
 
 // components
 import Topbar from '../../Components/Topbar/Topbar';
-import Navbar from '../../Components/Navbar/Navbar';
+// import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
 import Input from '../../components/Form/Input';
 import Button from '../../components/Form/Button';
@@ -48,6 +48,10 @@ function Register() {
 				value: '',
 				isValid: false,
 			},
+			phoneNumber: {
+				value: '',
+				isValid: false,
+			},
 		},
 		false
 	);
@@ -59,6 +63,7 @@ function Register() {
 		const newUserInfos = {
 			name: formState.inputs.name.value,
 			username: formState.inputs.username.value,
+			phone: formState.inputs.phoneNumber.value,
 			email: formState.inputs.email.value,
 			password: formState.inputs.password.value,
 			confirmPassword: formState.inputs.password.value,
@@ -79,7 +84,7 @@ function Register() {
 	return (
 		<>
 			<Topbar />
-			<Navbar />
+			{/* <Navbar /> */}
 			<section className='login-register'>
 				<div className='login register-form'>
 					<span className='login__title'>ساخت حساب کاربری</span>
@@ -115,6 +120,18 @@ function Register() {
 								type='text'
 								placeholder='نام کاربری'
 								validations={[requiredValidator(), minValidator(8), maxValidator(20)]}
+								onInputHandler={onInputHandler}
+							/>
+							<i className='login-form__username-icon fa fa-user'></i>
+						</div>
+						<div className='login-form__username'>
+							<Input
+								id='phoneNumber'
+								element='input'
+								className='login-form__username-input'
+								type='text'
+								placeholder='شماره تماس'
+								validations={[requiredValidator(), minValidator(10), maxValidator(12)]}
 								onInputHandler={onInputHandler}
 							/>
 							<i className='login-form__username-icon fa fa-user'></i>
