@@ -9,7 +9,7 @@ import './Register.css';
 
 // components
 import Topbar from '../../Components/Topbar/Topbar';
-// import Navbar from '../../Components/Navbar/Navbar';
+import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
 import Input from '../../components/Form/Input';
 import Button from '../../components/Form/Button';
@@ -84,7 +84,7 @@ function Register() {
 	return (
 		<>
 			<Topbar />
-			{/* <Navbar /> */}
+			<Navbar />
 			<section className='login-register'>
 				<div className='login register-form'>
 					<span className='login__title'>ساخت حساب کاربری</span>

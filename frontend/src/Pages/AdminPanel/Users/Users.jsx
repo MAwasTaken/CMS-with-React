@@ -60,6 +60,31 @@ function Users() {
 		});
 	};
 
+	// ban user
+	const banUser = (userID) => {
+		swal({
+			title: 'آیا از بن مطمیئنی ؟',
+			icon: 'warning',
+			buttons: ['نه', 'آره'],
+		}).then((res) => {
+			if (res)
+				fetch(`http://localhost:3000/v1/users/ban/${userID}`, {
+					method: 'DELETE',
+					headers: {
+						Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+					},
+				}).then((res) => {
+					if (res.ok) {
+						swal({
+							title: 'کاربر با موفقیت بن شد!',
+							icon: 'success',
+							button: 'باشه',
+						});
+					}
+				});
+		});
+	};
+
 	// jsx
 	return (
 		<>
@@ -98,6 +123,7 @@ function Users() {
 								</td>
 								<td>
 									<button
+										onClick={() => banUser(user._id)}
 										type='button'
 										className='btn btn-danger delete-btn'>
 										بن
