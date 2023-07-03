@@ -24,10 +24,7 @@ function Users() {
 			},
 		})
 			.then((res) => res.json())
-			.then((allUsers) => {
-				console.log(allUsers);
-				setUsers(allUsers);
-			});
+			.then((allUsers) => setUsers(allUsers));
 	}
 
 	// get all users when mounting

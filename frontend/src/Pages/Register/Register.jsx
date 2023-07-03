@@ -23,6 +23,7 @@ import { useForm } from '../../hooks/useForms';
 
 // contexts
 import AuthContext from '../../context/authContext';
+import swal from 'sweetalert';
 
 // register
 function Register() {
@@ -76,7 +77,17 @@ function Register() {
 			},
 			body: JSON.stringify(newUserInfos),
 		})
-			.then((res) => res.json())
+			.then((res) => {
+				if (res.ok) return res.json();
+				else {
+					if (res.status === 403)
+						swal({
+							title: 'این شماره تماس مسدود شده!',
+							icon: 'error',
+							buttons: 'ای داد',
+						});
+				}
+			})
 			.then((result) => authContext.login(result.user, result.accessToken));
 	};
 
