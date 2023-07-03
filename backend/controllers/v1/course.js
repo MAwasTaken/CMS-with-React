@@ -30,9 +30,20 @@ exports.getAll = async (req, res) => {
   const courses = await courseModel
     .find()
     .populate("creator", "-password")
+    .populate("categoryID")
+    .lean()
     .sort({ _id: -1 });
 
-  return res.json(courses);
+  let allCourses = [];
+  courses.forEach((course) => {
+    allCourses.push({
+      ...course,
+      categoryID: course.categoryID.title,
+      creator: course.creator.name,
+    });
+  });
+
+  return res.json(allCourses);
 };
 
 exports.getOne = async (req, res) => {
@@ -105,11 +116,13 @@ exports.register = async (req, res) => {
 
 exports.getCategoryCourses = async (req, res) => {
   const { categoryName } = req.params;
-  const category = await categoryModel.find({ name: categoryName })
-  if(category.length) {
-    const categoryCourses = await courseModel.find({ categoryID: category[0]._id })
-    res.json(categoryCourses)
+  const category = await categoryModel.find({ name: categoryName });
+  if (category.length) {
+    const categoryCourses = await courseModel.find({
+      categoryID: category[0]._id,
+    });
+    res.json(categoryCourses);
   } else {
-    res.json([])
+    res.json([]);
   }
 };
