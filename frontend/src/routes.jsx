@@ -14,7 +14,7 @@ import Users from './Pages/AdminPanel/Users/Users';
 import AdminCourses from './Pages/AdminPanel/Courses/Courses';
 import AdminMenus from './Pages/AdminPanel/Menus/Menus';
 import AdminArticles from './Pages/AdminPanel/Articles/Articles';
-import AdminCategory from './Pages/AdminPanel/category/category.jsx';
+import AdminCategory from './Pages/AdminPanel/Category/Category';
 
 // routes
 const routes = [
