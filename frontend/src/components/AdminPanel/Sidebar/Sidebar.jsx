@@ -81,6 +81,11 @@ function Sidebar() {
 						</Link>
 					</li>
 					<li>
+						<Link to='category'>
+							<span>دسته بندی ها</span>
+						</Link>
+					</li>
+					<li>
 						<a
 							href='#'
 							onClick={logoutAdmin}>

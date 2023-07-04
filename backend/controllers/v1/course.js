@@ -5,7 +5,7 @@ const categoryModel = require("../../models/category");
 const courseUserModel = require("../../models/course-user");
 
 exports.create = async (req, res) => {
-  const { name, description, shortName, categoryID, price } = req.body;
+  const { name, description, shortName, categoryID, price, isComplete, support, status } = req.body;
 
   const course = await courseModel.create({
     name,
@@ -14,8 +14,9 @@ exports.create = async (req, res) => {
     creator: req.user._id,
     categoryID,
     price,
-    isComplete: 0,
-    support: "گروه تلگرامی",
+    isComplete,
+    status,
+    support,
     cover: "/images/courses/fareelancer.png",
   });
 
