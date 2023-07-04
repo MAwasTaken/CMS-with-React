@@ -29,10 +29,12 @@ function category() {
 			});
 	};
 
+	// get all categories when mounting
 	useEffect(() => {
 		getAllCategories();
 	}, []);
 
+	// form authentication
 	const [formState, onInputHandler] = useForm({
 		title: {
 			value: '',
@@ -44,6 +46,7 @@ function category() {
 		},
 	});
 
+	// create new category
 	const createNewCategory = (event) => {
 		event.preventDefault();
 
@@ -51,8 +54,6 @@ function category() {
 			title: formState.inputs.title.value,
 			shortName: formState.inputs.shortname.value,
 		};
-
-		console.log(newCategoryInfos);
 
 		fetch(`http://localhost:3000/v1/category`, {
 			method: 'POST',
@@ -64,13 +65,40 @@ function category() {
 		}).then((res) => {
 			if (res.ok)
 				swal({
-					title: '',
+					title: 'دسته بندی مورد نظر با موفقیت اضافه شد',
 					icon: 'success',
 					buttons: 'اوکی',
 				}).then(() => getAllCategories());
 		});
 	};
 
+	// remove category
+	const removeCategory = (categoryID) => {
+		swal({
+			title: 'از حذف دستع بندی مطمئنی؟',
+			icon: 'warning',
+			buttons: ['نه', 'آره'],
+		}).then((result) => {
+			if (result) {
+				fetch(`http://localhost:3000/v1/category/${categoryID}`, {
+					method: 'DELETE',
+					headers: {
+						Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+					},
+				}).then((res) => {
+					if (res.ok) {
+						swal({
+							title: 'دسته بندی با موفقیت حذف شد',
+							icon: 'success',
+							buttons: 'حله',
+						}).then((res) => getAllCategories());
+					}
+				});
+			}
+		});
+	};
+
+	// jsx
 	return (
 		<>
 			<div
@@ -147,7 +175,7 @@ function category() {
 								</td>
 								<td>
 									<button
-										onClick={() => removeUser(user._id)}
+										onClick={() => removeCategory(category._id)}
 										type='button'
 										className='btn btn-warning delete-btn'>
 										حذف
