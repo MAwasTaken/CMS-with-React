@@ -5,6 +5,8 @@ import DataTable from '../../../components/AdminPanel/DataTable/DataTable';
 // styles
 
 // packages
+import swal from 'sweetalert';
+import { json } from 'react-router-dom';
 
 // components
 
@@ -12,8 +14,9 @@ import DataTable from '../../../components/AdminPanel/DataTable/DataTable';
 function Courses() {
 	// all courses
 	const [courses, setCourses] = useState([]);
+
 	// get all courses
-	useEffect(() => {
+	const getAllCourses = () => {
 		fetch(`http://localhost:3000/v1/courses`, {
 			headers: {
 				Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
@@ -21,7 +24,46 @@ function Courses() {
 		})
 			.then((res) => res.json())
 			.then((allCourses) => setCourses(allCourses));
+	};
+
+	// get all courses when mounting
+	useEffect(() => {
+		getAllCourses();
 	}, []);
+
+	// remove course
+	const removeCourse = (courseID) => {
+		swal({
+			title: 'آیا از حذف دوره اطمینان داری؟',
+			icon: 'warning',
+			buttons: ['نه', 'آره'],
+		}).then((result) => {
+			if (result) {
+				fetch(`http://localhost:3000/v1/courses/${courseID}`, {
+					method: 'DELETE',
+					headers: {
+						Authorization: `Bearer ${json.parse(localStorage.getItem('user')).token}`,
+					},
+				}).then((res) => {
+					if (res.ok) {
+						swal({
+							title: 'دوره مورد نظر با موفقیت حذف شد',
+							icon: 'success',
+							buttons: 'اوکی',
+						}).then(() => getAllCourses());
+					} else {
+						swal({
+							title: 'حذف دوره با مشکل مواجه شد!',
+							icon: 'warning',
+							buttons: 'اوکی',
+						});
+					}
+				});
+			}
+		});
+	};
+
+	// jsx
 	return (
 		<>
 			<DataTable title=' دوره ها'>
@@ -58,6 +100,7 @@ function Courses() {
 								</td>
 								<td>
 									<button
+										onClick={() => removeCourse(course._id)}
 										type='button'
 										className='btn btn-danger delete-btn'>
 										حذف
