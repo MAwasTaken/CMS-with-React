@@ -5,7 +5,15 @@ const categoryModel = require("../../models/category");
 const courseUserModel = require("../../models/course-user");
 
 exports.create = async (req, res) => {
-  const { name, description, shortName, categoryID, price, isComplete, support, status } = req.body;
+  const {
+    name,
+    description,
+    shortName,
+    categoryID,
+    price,
+    support,
+    status,
+  } = req.body;
 
   const course = await courseModel.create({
     name,
@@ -14,7 +22,7 @@ exports.create = async (req, res) => {
     creator: req.user._id,
     categoryID,
     price,
-    isComplete,
+    isComplete: 0,
     status,
     support,
     cover: "/images/courses/fareelancer.png",
@@ -126,4 +134,14 @@ exports.getCategoryCourses = async (req, res) => {
   } else {
     res.json([]);
   }
+};
+
+exports.remove = async (req, res) => {
+  const deletedCourse = await courseModel.findOneAndRemove({
+    _id: req.params.id,
+  });
+  if (!deletedCourse) {
+    return res.status(404).json({ message: "Course Not Found!" });
+  }
+  return res.json(deletedCourse);
 };

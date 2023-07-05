@@ -75,7 +75,7 @@ function category() {
 	// remove category
 	const removeCategory = (categoryID) => {
 		swal({
-			title: 'از حذف دستع بندی مطمئنی؟',
+			title: 'از حذف دسته بندی مطمئنی؟',
 			icon: 'warning',
 			buttons: ['نه', 'آره'],
 		}).then((result) => {
@@ -95,6 +95,31 @@ function category() {
 					}
 				});
 			}
+		});
+	};
+
+	// update category
+	const updateCategory = (categoryID) => {
+		swal({
+			title: 'عنوان جدید دسته بندی را وارد کنید:',
+			content: 'input',
+			buttons: 'ثبت عنوان جدید',
+		}).then((result) => {
+			if (result.trim().length)
+				fetch(`http://localhost:3000/v1/category/${categoryID}`, {
+					method: 'PUT',
+					headers: {
+						Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(result),
+				}).then((result) => {
+					swal({
+						title: 'دسته بندی مورد نظر با موفقیت ویرایش شد',
+						icon: 'success',
+						buttons: 'اوکی',
+					}).then(() => getAllCategories());
+				});
 		});
 	};
 
@@ -169,7 +194,8 @@ function category() {
 								<td>
 									<button
 										type='button'
-										className='btn btn-primary edit-btn'>
+										className='btn btn-primary edit-btn'
+										onClick={() => updateCategory(category._id)}>
 										ویرایش
 									</button>
 								</td>

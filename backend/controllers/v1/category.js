@@ -18,7 +18,20 @@ exports.remove = async (req, res) => {
     _id: req.params.id,
   });
   if (!deletedCategory) {
-    res.status(404).json("Category Not Found!");
+    return res.status(404).json({ message: "Category Not Found!" });
   }
-  res.json(deletedCategory);
+  return res.json(deletedCategory);
+};
+
+exports.update = async (req, res) => {
+  const updatedCategory = await categoryModel.findOneAndUpdate(
+    { _id: req.params.id },
+    {
+      title: req.body.title,
+    }
+  );
+  if (!updatedCategory) {
+    return res.status(404).json({ message: "Category Not Found!" });
+  }
+  return res.json(updatedCategory);
 };
